@@ -1,36 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, button } from 'react-native';
+import {
+  createStackNavigator,
+  createSwitchNavigator,
+  createAppContainer
+} from "react-navigation";
+import SignInScreen from "./components/SignInScreen";
+import HomeScreen from "./components/HomeScreen";
+import OtherScreen from "./components/OtherScreen";
+import AuthLoadingScreen from "./components/AuthLoading";
+import HomeBar from "./components/NavBar"
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-        </View>
-        <View style={styles.main} />
-        <View style={styles.footer} />
-      </View>
-    );
-  }
-}
+const AppStack = createStackNavigator({ Home: HomeBar, Other: OtherScreen });
+const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  header: {
-    flex: 1,
-    backgroundColor: 'powderblue'
-  },
-
-  main: {
-    flex: 6,
-    backgroundColor: 'skyblue',
-  },
-
-  footer: {
-    flex: 1,
-    backgroundColor: 'steelblue',
-
-  }
-});
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      App: AppStack,
+      Auth: AuthStack
+    },
+    {
+      initialRouteName: "AuthLoading"
+    }
+  )
+);
