@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import * as api from './api/api'
+import Spinner from "./components/Spinner"
 export default class App extends React.Component {
   state = {
     events: []
@@ -11,7 +12,8 @@ export default class App extends React.Component {
         <View style={styles.header}>
           <Text style={styles.headerText}>header</Text>
         </View>
-        <View style={styles.main}>
+        
+    <View style={styles.main}>
           <ScrollView style={styles.mainscroll}>
             {this.state.events.map(event => {
               return <View style={styles.event} key={event.id}>
@@ -21,22 +23,14 @@ export default class App extends React.Component {
 
             })}
           </ScrollView>
+            <Spinner/>
+   
         </View>
 
-        <View style={styles.footer} />
+        <View style={styles.footer}/>
+
       </View>
     );
-  }
-
-  componentDidMount = () => {
-
-    api.getEvents().then(events => {
-      this.setState({
-        events
-      })
-
-    })
-
   }
 }
 const styles = StyleSheet.create({
