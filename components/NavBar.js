@@ -8,12 +8,13 @@ import React from "react";
 
 import HomeScreen from "./HomeScreen";
 import OtherScreen from "./OtherScreen";
-
+import User from "./UserPage"
 const HomeBar = createAppContainer(
   createBottomTabNavigator(
     {
       Home: HomeScreen,
-      Settings: OtherScreen
+      Settings: OtherScreen,
+      User:User
     },
     {
       defaultNavigationOptions: ({ navigation }) => ({
@@ -24,7 +25,9 @@ const HomeBar = createAppContainer(
             iconName = `ios-home`;
           } else if (routeName === "Settings") {
             iconName = `ios-options`;
-          }
+          } else if (routeName === "User") {
+            iconName = `ios-contact`;
+          } 
 
           // You can return any component that you like here! We usually use an
           // icon component from react-native-vector-icons
@@ -37,7 +40,7 @@ const HomeBar = createAppContainer(
         activeTintColor: "tomato",
         inactiveTintColor: "gray"
       },
-      animationEnabled: false,
+      animationEnabled: true,
       swipeEnabled: false
     }
   )
