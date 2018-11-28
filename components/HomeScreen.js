@@ -1,6 +1,6 @@
 import React from "react";
-import { AsyncStorage, Button, StyleSheet, View } from "react-native";
- //import MyCarousel from "./myCarousel"
+import { AsyncStorage, Button, StyleSheet, View, Dimensions } from "react-native";
+import Spinner from "./Spinner"
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "Home"
@@ -9,7 +9,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <Spinner/>
         <Button title="Show me more of the app" onPress={this.showMoreApp} />
         <Button title="Actually, sign me out :)" onPress={this.signOutAsync} />
       </View>
@@ -29,6 +29,7 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 400,
     alignItems: "center",
     justifyContent: "center"
   }
