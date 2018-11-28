@@ -9,9 +9,9 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Spinner/>
-        <Button title="Show me more of the app" onPress={this.showMoreApp} />
-        <Button title="Actually, sign me out :)" onPress={this.signOutAsync} />
+        <Spinner />
+        {/* <Button title="Show me more of the app" onPress={this.showMoreApp} />
+        <Button title="Actually, sign me out :)" onPress={this.signOutAsync} /> */}
       </View>
     );
   }
