@@ -51,7 +51,6 @@ export default class Spinner extends React.Component {
 }
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -65,9 +64,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     flex: 1,
     width: 350,
-    height: 350,
+    height: 475,
     marginBottom: 10,
-    marginRight: 10
+    marginRight: 10,
+    marginLeft: 10,
   },
   headerText: {
     marginTop: 5,
