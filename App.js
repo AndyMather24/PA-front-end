@@ -13,7 +13,7 @@ import OtherScreen from "./components/OtherScreen";
 import AuthLoadingScreen from "./components/AuthLoading";
 import HomeBar from "./components/NavBar"
 
-const AppStack = createStackNavigator({ Home: HomeBar, Other: OtherScreen });
+const AppStack = createStackNavigator({ Home: HomeBar, Other: OtherScreen, Spinner: Spinner });
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
 export default createAppContainer(
