@@ -1,3 +1,8 @@
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import * as api from './api/api'
+import Spinner from "./components/Spinner"
+
 import {
   createStackNavigator,
   createSwitchNavigator,
@@ -23,3 +28,4 @@ export default createAppContainer(
     }
   )
 );
+
