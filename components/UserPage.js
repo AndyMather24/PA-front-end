@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { View, Text, Image, StyleSheet, Button } from "react-native";
 class User extends Component {
   static navigationOptions = {
-    title: "Me!"
+    title: "profile!",
+    header: "profile"
   };
   state = {
     username: "peterPlant",
@@ -20,10 +21,13 @@ class User extends Component {
                 "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
             }}
           />
+          <Text style={{ marginTop: 20 }}>{this.state.username}</Text>
         </View>
         <View style={styles.settings}>
-          <Text>{this.state.username}</Text>
-          <Button title="Sign out" onPress={() => this.props.navigation.navigate("Auth")}/>
+          <Button
+            title="Sign out"
+            onPress={() => this.props.navigation.navigate("Auth")}
+          />
         </View>
       </View>
     );

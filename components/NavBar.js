@@ -40,7 +40,7 @@ const HomeBar = createAppContainer(
         activeTintColor: "tomato",
         inactiveTintColor: "gray"
       },
-      animationEnabled: false,
+      animationEnabled: true,
       swipeEnabled: false
     }
   )
