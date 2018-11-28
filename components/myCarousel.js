@@ -1,6 +1,6 @@
 import Carousel from 'react-native-snap-carousel';
 
-export class MyCarousel extends Component {
+ class MyCarousel extends Component {
 
     _renderItem({ item, index }) {
         return (
@@ -22,3 +22,4 @@ export class MyCarousel extends Component {
         );
     }
 }
+export default MyCarousel;
