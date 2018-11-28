@@ -12,6 +12,7 @@ import SignInScreen from "./components/SignInScreen";
 import OtherScreen from "./components/OtherScreen";
 import AuthLoadingScreen from "./components/AuthLoading";
 import HomeBar from "./components/NavBar"
+import Form from "./components/Form"
 
 const AppStack = createStackNavigator({ Home: HomeBar, Other: OtherScreen, Spinner: Spinner });
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
@@ -21,7 +22,8 @@ export default createAppContainer(
     {
       AuthLoading: AuthLoadingScreen,
       App: AppStack,
-      Auth: AuthStack
+      Auth: AuthStack,
+      Form: Form
     },
     {
       initialRouteName: "AuthLoading"
