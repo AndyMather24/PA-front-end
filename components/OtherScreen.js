@@ -1,23 +1,19 @@
 import React from "react";
 import {
   AsyncStorage,
-  Button,
   StyleSheet,
   View,
-  StatusBar
 } from "react-native";
+import Spin from "./Carousel";
 class OtherScreen extends React.Component {
   static navigationOptions = {
     title: "other"
   };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Button title="I'm done, sign me out" onPress={this.signOutAsync} />
-        <StatusBar barStyle="default" />
-      </View>
-    );
+    return <View style={styles.container}>
+        <Spin />
+      </View>;
   }
 
   signOutAsync = async () => {

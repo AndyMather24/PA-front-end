@@ -43,7 +43,6 @@ export default class Spinner extends React.Component {
 
   fetchAllEvents = () => {
     api.getEvents().then(events => {
-      console.log(events)
       this.setState({
         events
       })
