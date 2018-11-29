@@ -1,19 +1,16 @@
 import React from "react";
-import {
-  AsyncStorage,
-  StyleSheet,
-  View,
-} from "react-native";
-import Spin from "./Carousel";
+import { AsyncStorage, StyleSheet, View, Text } from "react-native";
 class OtherScreen extends React.Component {
   static navigationOptions = {
     title: "other"
   };
 
   render() {
-    return <View style={styles.container}>
-        <Spin />
-      </View>;
+    return (
+      <View style={styles.container}>
+        <Text>All events here</Text>
+      </View>
+    );
   }
 
   signOutAsync = async () => {

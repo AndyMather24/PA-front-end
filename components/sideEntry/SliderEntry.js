@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry'; 
  class SliderEntry extends Component {
-
+    
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,

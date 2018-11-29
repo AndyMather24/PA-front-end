@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
-import * as api from './api/api'
-import Spinner from "./components/Spinner"
+import React from "react";
+import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
+import * as api from "./api/api";
+import Spinner from "./components/Spinner";
 
 import {
   createStackNavigator,
@@ -11,10 +11,19 @@ import {
 import SignInScreen from "./components/SignInScreen";
 import OtherScreen from "./components/OtherScreen";
 import AuthLoadingScreen from "./components/AuthLoading";
-import HomeBar from "./components/NavBar"
-import Form from "./components/Form"
+import HomeBar from "./components/NavBar";
+import Form from "./components/Form";
 
-const AppStack = createStackNavigator({ Home: HomeBar, Other: OtherScreen, Spinner: Spinner });
+const AppStack = createStackNavigator({
+  Home: {
+    screen: HomeBar,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Other: OtherScreen,
+  Spinner: Spinner
+});
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
 export default createAppContainer(
@@ -30,4 +39,3 @@ export default createAppContainer(
     }
   )
 );
-
