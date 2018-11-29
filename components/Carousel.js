@@ -4,14 +4,18 @@ import Carousel, { Pagination } from "react-native-snap-carousel";
 import { sliderWidth, itemWidth } from "./styles/SliderEntry";
 import SliderEntry from "./sideEntry/SliderEntry";
 import styles, { colors } from "./styles/index";
-import * as api from '../api/api'
+import * as api from "../api/api";
 //import { ENTRIES1, ENTRIES2 } from "./static/entries";
 const SLIDER_1_FIRST_ITEM = 1;
 
 export default class Spin extends Component {
   constructor(props) {
     super(props);
-    this.state = { slider1ActiveSlide: SLIDER_1_FIRST_ITEM, slider1Ref: null, ENTRIES1: [] };
+    this.state = {
+      slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
+      slider1Ref: null,
+      ENTRIES1: []
+    };
   }
 
   renderItem({ item, index }) {
@@ -41,7 +45,6 @@ export default class Spin extends Component {
             }
           }}
           data={this.state.ENTRIES1}
-
           renderItem={this.renderItemWithParallax}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -97,9 +100,7 @@ export default class Spin extends Component {
   //   );
   // }
 
-
   render() {
-    console.log(this.state.ENTRIES1, '<<<<<<')
     return (
       <View style={styles.container}>
         <StatusBar
@@ -120,17 +121,20 @@ export default class Spin extends Component {
     );
   }
   componentDidMount = () => {
-    this.fetchAllEvents()
-  }
+    this.fetchAllEvents();
+  };
   fetchAllEvents = () => {
     api.getEvents().then(events => {
       events = events.map(event => {
-        return { title: event.summary, subtitle: event.location, illustration: "http://i.imgur.com/UYiroysl.jpg" }
-      })
+        return {
+          title: event.summary,
+          subtitle: event.location,
+          illustration: "http://i.imgur.com/UYiroysl.jpg"
+        };
+      });
       this.setState({
         ENTRIES1: events
-      })
-    })
-  }
-
+      });
+    });
+  };
 }
