@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
@@ -8,7 +9,9 @@ class SliderEntry extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: false
+            active: false,
+
+
         };
     }
     static propTypes = {
@@ -19,16 +22,16 @@ class SliderEntry extends Component {
     };
 
     get image() {
-        const { data: { illustration }, parallax, parallaxProps, even } = this.props;
+        const { data: { illustration }, parallax, parallaxProps } = this.props;
 
         return parallax ? (
             <ParallaxImage
                 source={{ uri: illustration }}
-                containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}, this.state.active && styles.toggleImageContainer]}
+                containerStyle={[styles.imageContainer, this.state.active && styles.toggleImageContainer]}
                 style={[styles.image, { position: 'relative' }]}
                 parallaxFactor={0.35}
                 showSpinner={true}
-                spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
+                spinnerColor={'rgba(0, 0, 0, 0.25)'}
                 {...parallaxProps}
             />
         ) : (
@@ -40,11 +43,12 @@ class SliderEntry extends Component {
     }
 
     render() {
-        const { data: { title, subtitle }, even } = this.props;
-
+        let { data: { title, subtitle, date } } = this.props;
+        date = moment(date).format('LLLL');
+        const countDown = moment(date).startOf('hour').fromNow();
         const uppercaseTitle = title ? (
             <Text
-                style={[styles.title, even ? styles.titleEven : {}]}
+                style={styles.title}
                 numberOfLines={2}
             >
                 {title.toUpperCase()}
@@ -58,21 +62,34 @@ class SliderEntry extends Component {
                 onPress={() => {
                     console.log("clicked")
                     this.setState({
-                        active: !this.state.active
+                        active: !this.state.active,
                     })
                 }}
             >
-                <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}, this.state.active && styles.toggleImageContainer]}>
+                <View style={[styles.imageContainer, this.state.active && styles.toggleImageContainer,]}>
                     {this.image}
-                    <View style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]} />
+                    <View style={styles.radiusMask} />
                 </View>
-                <View style={[styles.textContainer, even ? styles.textContainerEven : {}, this.state.active && styles.textContainer]}>
+                <View style={[styles.textContainer, this.state.active && styles.toggleTextContainer]}>
                     {uppercaseTitle}
                     <Text
-                        style={[styles.subtitle, even ? styles.subtitleEven : {}]}
+                        style={[styles.subtitle]}
                         numberOfLines={2}
                     >
                         {subtitle}
+                    </Text>
+                    <Text
+                        style={[styles.subtitle]}
+                        numberOfLines={3}
+                    >
+                        {countDown}
+                    </Text>
+                    <Text
+                        style={[styles.subtitle]}
+                        numberOfLines={4}
+
+                    >
+                        {date}
                     </Text>
                 </View>
             </TouchableOpacity>

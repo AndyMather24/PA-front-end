@@ -129,6 +129,7 @@ export default class Spin extends Component {
         return {
           title: event.summary,
           subtitle: event.location,
+          date: event.start.dateTime,
           illustration: "http://i.imgur.com/UYiroysl.jpg"
         };
       });
