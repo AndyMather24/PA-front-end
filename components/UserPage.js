@@ -11,22 +11,40 @@ class User extends Component {
       "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
   };
   render() {
-    return <View style={styles.container}>
+    return (
+      <View style={styles.container}>
         <View style={styles.imgContainer}>
-          <Image style={styles.img} source={{ uri: "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png" }} />
-          <Text style={styles.text}>{this.state.username.toLocaleUpperCase()}</Text>
+          <Image
+            style={styles.img}
+            source={{
+              uri:
+                "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
+            }}
+          />
+          <Text style={styles.text}>
+            {this.state.username.toLocaleUpperCase()}
+          </Text>
         </View>
-        <View  style={styles.settings}>
-          <Button title="Sign out" onPress={() => this.props.navigation.navigate("Auth")} />
+        <View style={styles.settings}>
+          <Button
+            title="Settings"
+            onPress={() => this.props.navigation.navigate("Setting")}
+          />
+          <Button
+            title="Sign out"
+            onPress={() => this.props.navigation.navigate("Auth")}
+          />
         </View>
-      </View>;
+      </View>
+    );
   }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#151E29"
   },
   img: {
     height: 100,
@@ -46,7 +64,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 20
+    marginTop: 20,
+    color: "#fff"
   }
 });
 
