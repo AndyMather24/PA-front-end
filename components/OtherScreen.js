@@ -92,12 +92,13 @@ class OtherScreen extends React.Component {
     ]
   };
   render() {
-    return <Container style={{ backgroundColor: "#151E29" }}>
-        <Header transparent />
+    return (
+      <Container style={{ backgroundColor: "#151E29" }}>
         <Content>
-          <List>
+          <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
-              return <Card key={event.id}>
+              return (
+                <Card key={event.id}>
                   <ListItem thumbnail>
                     <Left>
                       <Thumbnail square source={{ uri: event.img }} />
@@ -109,16 +110,21 @@ class OtherScreen extends React.Component {
                       </Text>
                     </Body>
                     <Right>
-                      <Button transparent onPress={() => alert("Lucy!")}>
+                      <Button
+                        transparent
+                        onPress={() => this.props.navigation.navigate("Event")}
+                      >
                         <Text>View</Text>
                       </Button>
                     </Right>
                   </ListItem>
-                </Card>;
+                </Card>
+              );
             })}
           </List>
         </Content>
-      </Container>;
+      </Container>
+    );
   }
 }
 const styles = StyleSheet.create({

@@ -26,11 +26,12 @@ class User extends Component {
           </Text>
         </View>
         <View style={styles.settings}>
-          <Button
+          <Button color="white"
             title="Settings"
             onPress={() => this.props.navigation.navigate("Setting")}
           />
           <Button
+            color= "white"
             title="Sign out"
             onPress={() => this.props.navigation.navigate("Auth")}
           />
