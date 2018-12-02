@@ -9,11 +9,10 @@ import {
   Text,
   Left,
   Body,
-  Right,
-  Button,
+  Right, 
   Card
 } from "native-base";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Button } from "react-native";
 class OtherScreen extends React.Component {
   state = {
     events: [
@@ -93,33 +92,30 @@ class OtherScreen extends React.Component {
   };
   render() {
     return (
-      <Container style={{ backgroundColor: "#151E29" }}>
+      <Container style={{ backgroundColor: "#151E29", color: "white" }}>
         <Content>
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
-              return (
-                <Card key={event.id}>
+              return <Card key={event.id} style={{ backgroundColor: "#1B2737" }}>
                   <ListItem thumbnail>
                     <Left>
                       <Thumbnail square source={{ uri: event.img }} />
                     </Left>
                     <Body>
-                      <Text>{event.title}</Text>
-                      <Text note numberOfLines={1}>
+                      <Text style={{ color: "white" }}>
+                        {event.title}
+                      </Text>
+                      <Text note numberOfLines={1} style={{ color: "white" }}>
                         {event.describtion}
                       </Text>
                     </Body>
                     <Right>
-                      <Button
-                        transparent
-                        onPress={() => this.props.navigation.navigate("Event")}
-                      >
+                      <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
                         <Text>View</Text>
                       </Button>
                     </Right>
                   </ListItem>
-                </Card>
-              );
+                </Card>;
             })}
           </List>
         </Content>
