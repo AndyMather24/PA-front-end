@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
-import styles from '../styles/SliderEntry'; 
- class SliderEntry extends Component {
-    
+import styles from '../styles/SliderEntry';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+// import styles from "../styles/ToggledSlider";
+class SliderEntry extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false,
+            gestureName: 'none',
+        };
+    }
+    // onSwipeLeft(gestureState) {
+    //     this.setState({ active: false });
+    // }
+
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -12,59 +25,83 @@ import styles from '../styles/SliderEntry';
         parallaxProps: PropTypes.object
     };
 
-    get image () {
-        const { data: { illustration }, parallax, parallaxProps, even } = this.props;
+    get image() {
+        const { data: { illustration }, parallax, parallaxProps } = this.props;
 
         return parallax ? (
             <ParallaxImage
-              source={{ uri: illustration }}
-              containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
-              style={[styles.image, { position: 'relative' }]}
-              parallaxFactor={0.35}
-              showSpinner={true}
-              spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
-              {...parallaxProps}
+                source={{ uri: illustration }}
+                containerStyle={[styles.imageContainer, this.state.active && styles.toggleImageContainer]}
+                style={[styles.image, { position: 'relative' }]}
+                parallaxFactor={0.35}
+                showSpinner={true}
+                spinnerColor={'rgba(0, 0, 0, 0.25)'}
+                {...parallaxProps}
             />
         ) : (
-            <Image
-              source={{ uri: illustration }}
-              style={styles.image}
-            />
-        );
+                <Image
+                    source={{ uri: illustration }}
+                    style={styles.image}
+                />
+            );
     }
 
-    render () {
-        const { data: { title, subtitle }, even } = this.props;
-
+    render() {
+        let { data: { title, subtitle, date } } = this.props;
+        date = moment(date).format('LLLL');
+        const countDown = moment(date).startOf('hour').fromNow();
         const uppercaseTitle = title ? (
             <Text
-              style={[styles.title, even ? styles.titleEven : {}]}
-              numberOfLines={2}
+                style={styles.title}
+                numberOfLines={2}
             >
-                { title.toUpperCase() }
+                {title.toUpperCase()}
             </Text>
         ) : false;
 
         return (
+            // <GestureRecognizer
+            //     onSwipeLeft={(state) => this.onSwipeLeft(state)}
+            // >
             <TouchableOpacity
-              activeOpacity={1}
-              style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${title}'`); }}
-              >
-                <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
-                    { this.image }
-                    <View style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]} />
+                activeOpacity={1}
+                style={[styles.slideInnerContainer, this.state.active && styles.toggleSlideInnerContainer]}
+                On
+                onPress={() => {
+                    console.log("clicked")
+                    this.setState({
+                        active: !this.state.active,
+                    })
+                }}
+            >
+                <View style={[styles.imageContainer, this.state.active && styles.toggleImageContainer,]}>
+                    {this.image}
+                    <View style={styles.radiusMask} />
                 </View>
-                <View style={[styles.textContainer, even ? styles.textContainerEven : {}]}>
-                    { uppercaseTitle }
+                <View style={[styles.textContainer, this.state.active && styles.toggleTextContainer]}>
+                    {uppercaseTitle}
                     <Text
-                      style={[styles.subtitle, even ? styles.subtitleEven : {}]}
-                      numberOfLines={2}
+                        style={[styles.subtitle]}
+                        numberOfLines={2}
                     >
-                        { subtitle }
+                        {subtitle}
+                    </Text>
+                    <Text
+                        style={[styles.subtitle]}
+                        numberOfLines={3}
+                    >
+                        {countDown}
+                    </Text>
+                    <Text
+                        style={[styles.subtitle]}
+                        numberOfLines={4}
+
+                    >
+                        {date}
                     </Text>
                 </View>
             </TouchableOpacity>
+            // </GestureRecognizer>
         );
     }
 }
