@@ -4,8 +4,6 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-// import styles from "../styles/ToggledSlider";
 class SliderEntry extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +12,7 @@ class SliderEntry extends Component {
             gestureName: 'none',
         };
     }
-    // onSwipeLeft(gestureState) {
-    //     this.setState({ active: false });
-    // }
+
 
     static propTypes = {
         data: PropTypes.object.isRequired,
@@ -47,9 +43,7 @@ class SliderEntry extends Component {
     }
 
     render() {
-        let { data: { title, subtitle, date } } = this.props;
-        date = moment(date).format('LLLL');
-        const countDown = moment(date).startOf('hour').fromNow();
+        let { data: { title, subtitle, date, countDown } } = this.props;
         const uppercaseTitle = title ? (
             <Text
                 style={styles.title}
@@ -60,9 +54,7 @@ class SliderEntry extends Component {
         ) : false;
 
         return (
-            // <GestureRecognizer
-            //     onSwipeLeft={(state) => this.onSwipeLeft(state)}
-            // >
+
             <TouchableOpacity
                 activeOpacity={1}
                 style={[styles.slideInnerContainer, this.state.active && styles.toggleSlideInnerContainer]}
@@ -101,7 +93,6 @@ class SliderEntry extends Component {
                     </Text>
                 </View>
             </TouchableOpacity>
-            // </GestureRecognizer>
         );
     }
 }
