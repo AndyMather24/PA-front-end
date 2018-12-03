@@ -80,27 +80,6 @@ export default class Spin extends Component {
     );
   }
 
-  // get example2() {
-  //   return (
-  //     <View style={styles.exampleContainer}>
-  //       <Text style={styles.title}>Example 2</Text>
-  //       <Text style={styles.subtitle}>Momentum | Left-aligned</Text>
-  //       <Carousel
-  //         data={ENTRIES2}
-  //         renderItem={this.renderItem}
-  //         sliderWidth={sliderWidth}
-  //         itemWidth={itemWidth}
-  //         inactiveSlideScale={1}
-  //         inactiveSlideOpacity={1}
-  //         enableMomentum={true}
-  //         activeSlideAlignment={"start"}
-  //         containerCustomStyle={styles.slider}
-  //         contentContainerCustomStyle={styles.sliderContentContainer}
-  //         removeClippedSubviews={false}
-  //       />
-  //     </View>
-  //   );
-  // }
 
   render() {
     return (
