@@ -6,10 +6,9 @@ import {
   Form,
   Item,
   Input,
-  Label,
-  Card
+  Label
 } from "native-base";
-import { Button, StyleSheet, Text } from "react-native";
+import { Button, StyleSheet, Text, AsyncStorage } from "react-native";
 class Forms extends Component {
   state = {
     home: null,
@@ -17,7 +16,7 @@ class Forms extends Component {
   };
 
   render() {
-    const { settings } = this.props;
+    const { settings, home, office } = this.props;
     return (
       <Container style={{ backgroundColor: "#1B2737" }}>
         <Header transparent />
@@ -31,13 +30,13 @@ class Forms extends Component {
             <Item floatingLabel>
               <Label>Home Adress</Label>
               <Input
-                defaultValue={this.state.home}
+                value={this.state.home}
                 onChangeText={data => this.handleChange(data, "home")}
               />
             </Item>
             <Item floatingLabel>
               <Label>Office Location</Label>
-              <Input onChangeText={data => this.handleChange(data, "office")} />
+              <Input onChangeText={data => this.handleChange(data, "office")} defaultValue={office} />
             </Item>
             <Item floatingLabel>
               <Label>Station</Label>
@@ -47,11 +46,16 @@ class Forms extends Component {
               <Label color="white">Budget</Label>
               <Input />
             </Item>
-            {!settings && <Button
-              color="white"
-              title="Submit"
-              onPress={() => this.props.navigation.navigate("App")}
-            />}
+            {!settings && (
+              <Button
+                color="white"
+                title="Submit"
+                onPress={() => {
+                  this.preferenceAsync();
+                  this.props.navigation.navigate("App");
+                }}
+              />
+            )}
           </Form>
         </Content>
       </Container>
@@ -64,6 +68,10 @@ class Forms extends Component {
       },
       () => console.log(this.state)
     );
+  };
+  preferenceAsync = async () => {
+    const preference = JSON.stringify(this.state);
+    await AsyncStorage.setItem("preference", preference);
   };
 }
 
