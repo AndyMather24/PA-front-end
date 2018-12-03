@@ -34,20 +34,21 @@ class EventScreen extends Component {
   state = {};
 
   render() {
+    console.log(this.props)
     return <View>
-      <Header leftComponent={{ icon: 'back', color: '#fff' }}/>
-        <ScrollView>
-          <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
-            <Text style={{ marginBottom: 10 }}>
-              event name - date ...etc
+      <Header leftComponent={{ icon: 'back', color: '#fff' }} />
+      <ScrollView>
+        <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
+          <Text style={{ marginBottom: 10 }}>
+            event name - date ...etc
             </Text>
-            <SwitchSelector hasPadding={true} options={options} initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} />
-          </Card>
+          <SwitchSelector hasPadding={true} options={options} initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} />
+        </Card>
 
-          <PricingCard color="#4f9deb" title="Transport" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
-          <PricingCard color="#4f9deb" title="Transport and Accommodation" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
-        </ScrollView>
-      </View>;
+        <PricingCard color="#4f9deb" title="Transport" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
+        <PricingCard color="#4f9deb" title="Transport and Accommodation" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
+      </ScrollView>
+    </View>;
   }
 }
 

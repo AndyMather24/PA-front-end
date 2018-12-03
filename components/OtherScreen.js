@@ -45,7 +45,7 @@ class OtherScreen extends React.Component {
                     </Text>
                   </Body>
                   <Right>
-                    <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
+                    <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event", { event })}>
                       <Text>View</Text>
                     </Button>
                   </Right>
