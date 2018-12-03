@@ -1,22 +1,127 @@
 import React from "react";
-import { AsyncStorage, StyleSheet, View, Text } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Left,
+  Body,
+  Right, 
+  Card
+} from "native-base";
+import { StyleSheet, Button } from "react-native";
 class OtherScreen extends React.Component {
-  static navigationOptions = {
-    title: "other"
+  state = {
+    events: [
+      {
+        id: 1,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 2,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 3,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 4,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 5,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 6,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 7,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 8,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 9,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 10,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 11,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      },
+      {
+        id: 12,
+        title: "meeting with lucy",
+        describtion: "another position",
+        img: "http://i.imgur.com/2nCt3Sbl.jpg"
+      }
+    ]
   };
-
   render() {
     return (
-      <View style={styles.container}>
-        <Text>All events here</Text>
-      </View>
+      <Container style={{ backgroundColor: "#151E29", color: "white" }}>
+        <Content>
+          <List style={{ marginTop: 30 }}>
+            {this.state.events.map(event => {
+              return <Card key={event.id} style={{ backgroundColor: "#1B2737" }}>
+                  <ListItem thumbnail>
+                    <Left>
+                      <Thumbnail square source={{ uri: event.img }} />
+                    </Left>
+                    <Body>
+                      <Text style={{ color: "white" }}>
+                        {event.title}
+                      </Text>
+                      <Text note numberOfLines={1} style={{ color: "white" }}>
+                        {event.describtion}
+                      </Text>
+                    </Body>
+                    <Right>
+                      <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
+                        <Text>View</Text>
+                      </Button>
+                    </Right>
+                  </ListItem>
+                </Card>;
+            })}
+          </List>
+        </Content>
+      </Container>
     );
   }
-
-  signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate("Auth");
-  };
 }
 const styles = StyleSheet.create({
   container: {

@@ -1,6 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
-import * as api from "./api/api";
 import Spinner from "./components/Spinner";
 
 import {
@@ -13,7 +11,8 @@ import OtherScreen from "./components/OtherScreen";
 import AuthLoadingScreen from "./components/AuthLoading";
 import HomeBar from "./components/NavBar";
 import Form from "./components/Form";
-
+import Settings from "./components/Settings";
+import EventScreen from "./components/EventScreen";
 const AppStack = createStackNavigator({
   Home: {
     screen: HomeBar,
@@ -32,7 +31,9 @@ export default createAppContainer(
       AuthLoading: AuthLoadingScreen,
       App: AppStack,
       Auth: AuthStack,
-      Form: Form
+      Form: Form,
+      Setting: Settings,
+      Event: EventScreen
     },
     {
       initialRouteName: "AuthLoading"

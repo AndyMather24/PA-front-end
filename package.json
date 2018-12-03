@@ -11,11 +11,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^31.0.2",
+    "native-base": "^2.8.1",
     "moment": "^2.22.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react-native-elements": "^0.19.1",
     "react-native-google-signin": "^1.0.1",
     "react-native-snap-carousel": "^3.7.5",
+    "react-native-switch-selector": "^1.1.10",
     "react-navigation": "^3.0.1"
   },
   "devDependencies": {

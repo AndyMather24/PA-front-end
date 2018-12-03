@@ -13,7 +13,7 @@ const HomeBar = createAppContainer(
   createBottomTabNavigator(
     {
       Home: HomeScreen,
-      Settings: OtherScreen,
+      Events: OtherScreen,
       User: User
     },
     {
@@ -23,8 +23,8 @@ const HomeBar = createAppContainer(
           let iconName;
           if (routeName === "Home") {
             iconName = `ios-home`;
-          } else if (routeName === "Settings") {
-            iconName = `ios-options`;
+          } else if (routeName === "Events") {
+            iconName = `ios-calendar`;
           } else if (routeName === "User") {
             iconName = `ios-contact`;
           }
