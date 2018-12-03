@@ -5,6 +5,7 @@ import { sliderWidth, itemWidth } from "./styles/SliderEntry";
 import SliderEntry from "./sideEntry/SliderEntry";
 import styles, { colors } from "./styles/index";
 import * as api from "../api/api";
+import locationImages from './static/locationImages';
 //import { ENTRIES1, ENTRIES2 } from "./static/entries";
 const SLIDER_1_FIRST_ITEM = 1;
 
@@ -57,10 +58,11 @@ export default class Spin extends Component {
           contentContainerCustomStyle={styles.sliderContentContainer}
           loop={true}
           loopClonesPerSide={2}
-          autoplay={true}
-          autoplayDelay={500}
-          autoplayInterval={3000}
+          autoplay={false}
+          //autoplayDelay={500}
+          //autoplayInterval={3000}
           onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
+          inactiveSlideShift={80}
         />
         <Pagination
           dotsLength={this.state.ENTRIES1.length || 1}
@@ -126,11 +128,12 @@ export default class Spin extends Component {
   fetchAllEvents = () => {
     api.getEvents().then(events => {
       events = events.map(event => {
+        console.log(event.location);
         return {
           title: event.summary,
           subtitle: event.location,
           date: event.start.dateTime,
-          illustration: "http://i.imgur.com/UYiroysl.jpg"
+          illustration: this.selectImage(event.location) //this.SelectImage(event.location)//this.SelectImage(event.location)//(event.location.includes('Bristol')) ? "http://i.imgur.com/KZsmUi2l.jpg" : "http://i.imgur.com/UYiroysl.jpg"
         };
       });
       this.setState({
@@ -138,4 +141,11 @@ export default class Spin extends Component {
       });
     });
   };
+
+  selectImage = (location) => {
+    const matchingLocation = Object.keys(locationImages).filter(locate => {
+      return location.includes(locate);
+    })
+    return locationImages[matchingLocation.join('')]
+  }
 }
