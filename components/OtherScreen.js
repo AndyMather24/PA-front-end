@@ -1,7 +1,11 @@
 import React from "react";
+import * as api from '../api/api'
+import locationImages from './static/locationImages';
+import moment from 'moment';
 import {
   Container,
   Header,
+  View,
   Content,
   List,
   ListItem,
@@ -9,118 +13,79 @@ import {
   Text,
   Left,
   Body,
-  Right, 
+  Right,
   Card
 } from "native-base";
 import { StyleSheet, Button } from "react-native";
 class OtherScreen extends React.Component {
   state = {
     events: [
-      {
-        id: 1,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 2,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 3,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 4,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 5,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 6,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 7,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 8,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 9,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 10,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 11,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      },
-      {
-        id: 12,
-        title: "meeting with lucy",
-        describtion: "another position",
-        img: "http://i.imgur.com/2nCt3Sbl.jpg"
-      }
     ]
   };
   render() {
     return (
-      <Container style={{ backgroundColor: "#151E29", color: "white" }}>
+      <Container style={{ backgroundColor: "#151E29" }}>
         <Content>
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
-              return <Card key={event.id} style={{ backgroundColor: "#1B2737" }}>
-                  <ListItem thumbnail>
-                    <Left>
-                      <Thumbnail square source={{ uri: event.img }} />
-                    </Left>
-                    <Body>
-                      <Text style={{ color: "white" }}>
-                        {event.title}
-                      </Text>
-                      <Text note numberOfLines={1} style={{ color: "white" }}>
-                        {event.describtion}
-                      </Text>
-                    </Body>
-                    <Right>
-                      <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
-                        <Text>View</Text>
-                      </Button>
-                    </Right>
-                  </ListItem>
-                </Card>;
+              return <View key={event.id} style={styles.card}>
+                <ListItem thumbnail noBorder>
+                  <Left>
+                    <Thumbnail style={styles.image} square source={{ uri: event.illustration }} />
+                  </Left>
+                  <Body>
+                    <Text style={styles.textTitle}>
+                      {event.title}
+                    </Text>
+                    <Text style={styles.textLocation}>
+                      {event.subtitle}
+                    </Text>
+                    <Text style={styles.textDate}>
+                      {moment(event.date).format('LLLL')}
+                    </Text>
+                  </Body>
+                  <Right>
+                    <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
+                      <Text>View</Text>
+                    </Button>
+                  </Right>
+                </ListItem>
+              </View>;
             })}
           </List>
         </Content>
       </Container>
     );
+  }
+  componentDidMount = () => {
+    this.fetchAllEvents();
+  };
+
+  fetchAllEvents = () => {
+
+    api.getEvents().then(events => {
+      events = events.map(event => {
+        const locationArr = event.location.split(',');
+        const location = locationArr[locationArr.length - 2] + ' ' + locationArr[locationArr.length - 1]
+        return {
+          id: event.id,
+          title: event.summary,
+          subtitle: location,
+          date: event.start.dateTime,
+          illustration: this.selectImage(event.location)
+        };
+      });
+      this.setState({
+        events
+      });
+    });
+
+  }
+  selectImage = (location) => {
+    const matchingLocation = Object.keys(locationImages).filter(locate => {
+      return location.includes(locate);
+    })
+    return locationImages[matchingLocation.join('')]
   }
 }
 const styles = StyleSheet.create({
@@ -128,7 +93,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  card: {
+    backgroundColor: "#1B2737",
+    margin: 10,
+    borderRadius: 15
+  },
+  textTitle: {
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  textLocation: {
+    color: 'white'
+  },
+  textDate: {
+    color: 'white'
+  },
+  image: {
+    borderRadius: 15
   }
+
 });
 
 export default OtherScreen;
