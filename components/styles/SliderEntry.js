@@ -3,7 +3,7 @@ import { colors } from '.';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
-function wp (percentage) {
+function wp(percentage) {
     const value = (percentage * viewportWidth) / 100;
     return Math.round(value);
 }
@@ -22,7 +22,14 @@ export default StyleSheet.create({
         width: itemWidth,
         height: slideHeight,
         paddingHorizontal: itemHorizontalMargin,
-        paddingBottom: 18 // needed for shadow
+        paddingBottom: 18,// needed for shadow
+    },
+    toggleSlideInnerContainer: {
+        width: itemWidth,
+        height: viewportHeight,
+        paddingHorizontal: itemHorizontalMargin,
+        paddingBottom: 1,// needed for shadow
+        marginBottom: 0,
     },
     imageContainer: {
         flex: 1,
@@ -30,9 +37,16 @@ export default StyleSheet.create({
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius
     },
+    toggleImageContainer: {
+        flex: 0.5,
+        backgroundColor: "white",
+        borderTopLeftRadius: entryBorderRadius,
+        borderTopRightRadius: entryBorderRadius
+    },
     imageContainerEven: {
         backgroundColor: colors.black
     },
+
     image: {
         ...StyleSheet.absoluteFillObject,
         resizeMode: 'cover',
@@ -61,6 +75,17 @@ export default StyleSheet.create({
         borderBottomLeftRadius: entryBorderRadius,
         borderBottomRightRadius: entryBorderRadius
     },
+    toggleTextContainer: {
+        justifyContent: "center",
+        paddingTop: 20 - entryBorderRadius,
+        paddingBottom: 20,
+        marginBottom: 1,
+        paddingHorizontal: 16,
+        backgroundColor: "white",
+        borderBottomLeftRadius: entryBorderRadius,
+        borderBottomRightRadius: entryBorderRadius
+    },
+
     textContainerEven: {
         backgroundColor: colors.black
     },
