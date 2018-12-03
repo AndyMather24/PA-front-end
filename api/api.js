@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const getEvents = async () => {
-    const { data } = await axios.get('https://pa-back-end.herokuapp.com/events')
-        return data;
+    const { data } = await axios.get('https://pa-backend1.herokuapp.com')
+    return data;
 }
