@@ -128,7 +128,6 @@ export default class Spin extends Component {
   fetchAllEvents = () => {
     api.getEvents().then(events => {
       events = events.map(event => {
-        console.log(event.location);
         return {
           title: event.summary,
           subtitle: event.location,
