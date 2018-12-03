@@ -1,7 +1,7 @@
 import React from "react";
-import * as api from '../api/api'
-import locationImages from './static/locationImages';
-import moment from 'moment';
+import * as api from "../api/api";
+import locationImages from "./static/locationImages";
+import moment from "moment";
 import {
   Container,
   Header,
@@ -19,8 +19,7 @@ import {
 import { StyleSheet, Button } from "react-native";
 class OtherScreen extends React.Component {
   state = {
-    events: [
-    ]
+    events: []
   };
   render() {
     return (
@@ -28,29 +27,35 @@ class OtherScreen extends React.Component {
         <Content>
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
-              return <View key={event.id} style={styles.card}>
-                <ListItem thumbnail noBorder>
-                  <Left>
-                    <Thumbnail style={styles.image} square source={{ uri: event.illustration }} />
-                  </Left>
-                  <Body>
-                    <Text style={styles.textTitle}>
-                      {event.title}
-                    </Text>
-                    <Text style={styles.textLocation}>
-                      {event.subtitle}
-                    </Text>
-                    <Text style={styles.textDate}>
-                      {moment(event.date).format('LLLL')}
-                    </Text>
-                  </Body>
-                  <Right>
-                    <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event")}>
-                      <Text>View</Text>
-                    </Button>
-                  </Right>
-                </ListItem>
-              </View>;
+              return (
+                <View key={event.id} style={styles.card}>
+                  <ListItem thumbnail noBorder>
+                    <Left>
+                      <Thumbnail
+                        style={styles.image}
+                        square
+                        source={{ uri: event.illustration }}
+                      />
+                    </Left>
+                    <Body>
+                      <Text style={styles.textTitle}>{event.title}</Text>
+                      <Text style={styles.textLocation}>{event.subtitle}</Text>
+                      <Text style={styles.textDate}>
+                        {moment(event.date).format("LLLL")}
+                      </Text>
+                    </Body>
+                    <Right>
+                      <Button
+                        color="white"
+                        title="view"
+                        onPress={() => this.props.navigation.navigate("Event")}
+                      >
+                        <Text>View</Text>
+                      </Button>
+                    </Right>
+                  </ListItem>
+                </View>
+              );
             })}
           </List>
         </Content>
@@ -62,11 +67,13 @@ class OtherScreen extends React.Component {
   };
 
   fetchAllEvents = () => {
-
     api.getEvents().then(events => {
       events = events.map(event => {
-        const locationArr = event.location.split(',');
-        const location = locationArr[locationArr.length - 2] + ' ' + locationArr[locationArr.length - 1]
+        const locationArr = event.location.split(",");
+        const location =
+          locationArr[locationArr.length - 2] +
+          " " +
+          locationArr[locationArr.length - 1];
         return {
           id: event.id,
           title: event.summary,
@@ -79,14 +86,13 @@ class OtherScreen extends React.Component {
         events
       });
     });
-
-  }
-  selectImage = (location) => {
+  };
+  selectImage = location => {
     const matchingLocation = Object.keys(locationImages).filter(locate => {
       return location.includes(locate);
-    })
-    return locationImages[matchingLocation.join('')]
-  }
+    });
+    return locationImages[matchingLocation.join("")];
+  };
 }
 const styles = StyleSheet.create({
   container: {
@@ -100,19 +106,18 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   textTitle: {
-    fontWeight: 'bold',
-    color: 'white'
+    fontWeight: "bold",
+    color: "white"
   },
   textLocation: {
-    color: 'white'
+    color: "white"
   },
   textDate: {
-    color: 'white'
+    color: "white"
   },
   image: {
     borderRadius: 15
   }
-
 });
 
 export default OtherScreen;

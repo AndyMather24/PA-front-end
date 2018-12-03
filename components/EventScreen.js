@@ -34,7 +34,8 @@ const options = [
 class EventScreen extends Component {
   state = {
     eventId: "068lhcsuvp4mfn9i350he6ue9d",
-    event: {}
+    event: {},
+    start: "home"
   };
 
   render() {
@@ -49,9 +50,7 @@ class EventScreen extends Component {
               hasPadding={true}
               options={options}
               initial={0}
-              onPress={value =>
-                console.log(`Call onPress with value: ${value}`)
-              }
+              onPress={value => this.toggleStart(value )}
             />
           </Card>
 
@@ -80,10 +79,13 @@ class EventScreen extends Component {
     );
   }
   componentDidMount() {
-    this.FetchEvent(this.state.eventId);
+    this.FetchEvent(this.state.eventId, this.state.start);
   }
-  FetchEvent = id => {
-    api.getEventById(id).then(event => this.setState({ event }));
+  FetchEvent = (id, start) => {
+    api.getEventById(id, start).then(event => this.setState({ event }));
+  };
+  toggleStart = start => {
+    this.setState({ start }, () => console.log(this.state));
   };
 }
 

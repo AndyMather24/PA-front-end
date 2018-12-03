@@ -11,9 +11,9 @@ export const postAddressPref = async state => {
     .catch(console.log);
 };
 
-export const getEventById = async id => {
+export const getEventById = async (id, start) => {
   const { data } = await axios.get(
-    `https://pa-backend1.herokuapp.com/direction/${id}?start=office`
+    `https://pa-backend1.herokuapp.com/direction/${id}?start=${start}`
   );
   console.log(data);
   return data;

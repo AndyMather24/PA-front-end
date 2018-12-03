@@ -44,8 +44,8 @@ class SliderEntry extends Component {
 
     render() {
         let { data: { title, subtitle, date } } = this.props;
-        date = moment(date).format('LLLL');
-        const countDown = moment(date).startOf('hour').fromNow();
+        // date = moment(date).format('LLLL');
+        // const countDown = moment(date).startOf('hour').fromNow();
         const uppercaseTitle = title ? (
             <Text
                 style={styles.title}
@@ -82,14 +82,14 @@ class SliderEntry extends Component {
                         style={[styles.subtitle]}
                         numberOfLines={3}
                     >
-                        {countDown}
+                        {/* {countDown} */}
                     </Text>
                     <Text
                         style={[styles.subtitle]}
                         numberOfLines={4}
 
                     >
-                        {date}
+                        {/* {date} */}
                     </Text>
                 </View>
             </TouchableOpacity>
