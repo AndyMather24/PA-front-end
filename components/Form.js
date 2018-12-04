@@ -9,14 +9,17 @@ import {
   Label
 } from "native-base";
 import { Button, StyleSheet, Text, AsyncStorage } from "react-native";
+import * as api from "../api/api";
+import Axios from "../node_modules/axios";
 class Forms extends Component {
   state = {
-    home: null,
-    office: null
+    user: "banana",
+    office_address: "manchester office",
+    home_address: "manchester house"
   };
 
   render() {
-    const { settings, home, office } = this.props;
+    const { settings } = this.props;
     return (
       <Container style={{ backgroundColor: "#1B2737" }}>
         <Header transparent />
@@ -28,15 +31,16 @@ class Forms extends Component {
               <Input />
             </Item>
             <Item floatingLabel>
-              <Label>Home Adress</Label>
+              <Label>Home Address</Label>
               <Input
-                value={this.state.home}
-                onChangeText={data => this.handleChange(data, "home")}
+                onChangeText={data => this.handleChange(data, "home_address")}
               />
             </Item>
             <Item floatingLabel>
               <Label>Office Location</Label>
-              <Input onChangeText={data => this.handleChange(data, "office")} defaultValue={office} />
+              <Input
+                onChangeText={data => this.handleChange(data, "office_address")}
+              />
             </Item>
             <Item floatingLabel>
               <Label>Station</Label>
@@ -52,6 +56,7 @@ class Forms extends Component {
                 title="Submit"
                 onPress={() => {
                   this.preferenceAsync();
+                  this.handleSubmit(this.state);
                   this.props.navigation.navigate("App");
                 }}
               />
@@ -66,12 +71,16 @@ class Forms extends Component {
       {
         [name]: event
       },
-      () => console.log(this.state)
+      () => console.log("this.state")
     );
   };
   preferenceAsync = async () => {
     const preference = JSON.stringify(this.state);
     await AsyncStorage.setItem("preference", preference);
+  };
+
+  handleSubmit = addresses => {
+    api.postAddressPref(addresses);
   };
 }
 
