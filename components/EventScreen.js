@@ -4,6 +4,8 @@ import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import { Ionicons } from "@expo/vector-icons";
 import * as api from "../api/api";
+import { WebBrowser } from "expo";
+
 
 const options = [
   {
@@ -33,24 +35,29 @@ const options = [
 ];
 class EventScreen extends Component {
   state = {
-    eventId: "068lhcsuvp4mfn9i350he6ue9d",
-    event: {},
+    bookInfo: [],
+
     start: "home"
   };
 
+  
   render() {
-    const { event } = this.state;
+    const { bookInfo } = this.state;
+    const { event } = this.props.navigation.state.params;
+    console.log(bookInfo);
     return (
       <View>
         <Header leftComponent={{ icon: "home", color: "#fff" }} />
         <ScrollView>
           <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
-            <Text style={{ marginBottom: 10 }}>{event.date}</Text>
+            <Text style={{ marginBottom: 10 }}>
+              {event.title} {event.subtitle}
+            </Text>
             <SwitchSelector
               hasPadding={true}
               options={options}
               initial={0}
-              onPress={value => this.toggleStart(value )}
+              onPress={value => this.toggleStart(value)}
             />
           </Card>
 
@@ -59,12 +66,12 @@ class EventScreen extends Component {
             title="Transport"
             price="£0"
             info={[
-              `from: ${event.departure_stop || "loading"}`,
-              `to: ${event.arrival_stop || "loading"}`,
-              `duration: ${event.duration || "loading"}`
+              `from: ${bookInfo.departure_stop || "loading"}`,
+              `to: ${bookInfo.arrival_stop || "loading"}`,
+              `duration: ${bookInfo.duration || "loading"}`
             ]}
             button={{ title: "BOOK NOW", icon: "flight-takeoff" }}
-            onButtonPress={() => this.props.navigation.navigate("App")}
+            onButtonPress={this.linkTo}
           />
           <PricingCard
             color="#4f9deb"
@@ -78,14 +85,28 @@ class EventScreen extends Component {
       </View>
     );
   }
+  componentDidUpdate(prevProp, prevState) {
+    if (prevState.start !== this.state.start) {
+      const { event } = this.props.navigation.state.params;
+      this.FetchEvent(event.id, this.state.start);
+    }
+  }
   componentDidMount() {
-    this.FetchEvent(this.state.eventId, this.state.start);
+    const { event } = this.props.navigation.state.params;
+    this.FetchEvent(event.id, this.state.start);
   }
   FetchEvent = (id, start) => {
-    api.getEventById(id, start).then(event => this.setState({ event }));
+    api.getEventById(id, start).then(bookInfo => {
+      this.setState({ bookInfo });
+    });
   };
   toggleStart = start => {
-    this.setState({ start }, () => console.log(this.state));
+    this.setState({ start });
+  };
+
+  linkTo = () => {
+    WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
+
   };
 }
 

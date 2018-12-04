@@ -13,9 +13,9 @@ import * as api from "../api/api";
 import Axios from "../node_modules/axios";
 class Forms extends Component {
   state = {
-    user: "banana",
-    office_address: "manchester office",
-    home_address: "manchester house"
+    user: "Peter Plant (fake)",
+    office_address: "Manchester,UK",
+    home_address: "Rochdale,UK"
   };
 
   render() {

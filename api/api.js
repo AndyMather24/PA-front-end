@@ -15,6 +15,5 @@ export const getEventById = async (id, start) => {
   const { data } = await axios.get(
     `https://pa-backend1.herokuapp.com/direction/${id}?start=${start}`
   );
-  console.log(start);
   return data;
 };

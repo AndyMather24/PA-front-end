@@ -7,6 +7,7 @@ const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
 );
 export default class Header extends Component {
 
+    
     render() {
         return (
             <View>
