@@ -10,6 +10,7 @@ class User extends Component {
     avatar:
       "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
   };
+  
   render() {
     return (
       <View style={styles.container}>

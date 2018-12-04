@@ -13,7 +13,7 @@ export default class Header extends Component {
         </View>
       </View>
     );
-  }
+  
 }
 
 const styles = StyleSheet.create({

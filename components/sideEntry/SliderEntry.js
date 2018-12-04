@@ -4,6 +4,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry';
+// import styles from "../styles/ToggledSlider";
 class SliderEntry extends Component {
     constructor(props) {
         super(props);
@@ -12,8 +13,6 @@ class SliderEntry extends Component {
             gestureName: 'none',
         };
     }
-
-
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -54,13 +53,11 @@ class SliderEntry extends Component {
         ) : false;
 
         return (
-
             <TouchableOpacity
                 activeOpacity={1}
                 style={[styles.slideInnerContainer, this.state.active && styles.toggleSlideInnerContainer]}
                 On
                 onPress={() => {
-                    console.log("clicked")
                     this.setState({
                         active: !this.state.active,
                     })
@@ -82,14 +79,14 @@ class SliderEntry extends Component {
                         style={[styles.subtitle]}
                         numberOfLines={3}
                     >
-                        {countDown}
+                        countDown
                     </Text>
                     <Text
                         style={[styles.subtitle]}
                         numberOfLines={4}
 
                     >
-                        {date}
+                        date
                     </Text>
                 </View>
             </TouchableOpacity>

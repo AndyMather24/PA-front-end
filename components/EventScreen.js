@@ -3,6 +3,9 @@ import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import { Ionicons } from "@expo/vector-icons";
+import * as api from "../api/api";
+import { WebBrowser } from "expo";
+
 
 const options = [
   {
@@ -31,25 +34,80 @@ const options = [
   }
 ];
 class EventScreen extends Component {
-  state = {};
+  state = {
+    bookInfo: [],
 
+    start: "home"
+  };
+
+  
   render() {
-    console.log(this.props)
-    return <View>
-      <Header leftComponent={{ icon: 'back', color: '#fff' }} />
-      <ScrollView>
-        <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
-          <Text style={{ marginBottom: 10 }}>
-            event name - date ...etc
+    const { bookInfo } = this.state;
+    const { event } = this.props.navigation.state.params;
+    console.log(bookInfo);
+    return (
+      <View>
+        <Header leftComponent={{ icon: "home", color: "#fff" }} />
+        <ScrollView>
+          <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
+            <Text style={{ marginBottom: 10 }}>
+              {event.title} {event.subtitle}
             </Text>
-          <SwitchSelector hasPadding={true} options={options} initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} />
-        </Card>
+            <SwitchSelector
+              hasPadding={true}
+              options={options}
+              initial={0}
+              onPress={value => this.toggleStart(value)}
+            />
+          </Card>
 
-        <PricingCard color="#4f9deb" title="Transport" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
-        <PricingCard color="#4f9deb" title="Transport and Accommodation" price="£0" info={["1 passenger", "economy", "massage"]} button={{ title: "BOOK NOW", icon: "flight-takeoff" }} onButtonPress={() => this.props.navigation.navigate("App")} />
-      </ScrollView>
-    </View>;
+          <PricingCard
+            color="#4f9deb"
+            title="Transport"
+            price="£0"
+            info={[
+              `from: ${bookInfo.departure_stop || "loading"}`,
+              `to: ${bookInfo.arrival_stop || "loading"}`,
+              `duration: ${bookInfo.duration || "loading"}`
+            ]}
+            button={{ title: "BOOK NOW", icon: "flight-takeoff" }}
+            onButtonPress={this.linkTo}
+          />
+          <PricingCard
+            color="#4f9deb"
+            title="Transport and Accommodation"
+            price="£0"
+            info={["1 passenger", "economy", "massage"]}
+            button={{ title: "BOOK NOW", icon: "flight-takeoff" }}
+            onButtonPress={() => this.props.navigation.navigate("App")}
+          />
+        </ScrollView>
+      </View>
+    );
   }
+  componentDidUpdate(prevProp, prevState) {
+    if (prevState.start !== this.state.start) {
+      const { event } = this.props.navigation.state.params;
+      this.FetchEvent(event.id, this.state.start);
+    }
+  }
+  componentDidMount() {
+    const { event } = this.props.navigation.state.params;
+    this.FetchEvent(event.id, this.state.start);
+  }
+  FetchEvent = (id, start) => {
+    api.getEventById(id, start).then(bookInfo => {
+      this.setState({ bookInfo });
+    });
+  };
+  toggleStart = start => {
+    this.setState({ start });
+  };
+
+  linkTo = () => {
+    WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
+
+  };
 }
 
 const styles = StyleSheet.create({

@@ -14,6 +14,7 @@ class Settings extends Component {
           office={this.storagePref().office}
         />
 
+
         <View style={styles.container}>
           <Button
             color="white"

@@ -17,11 +17,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "googleAppId": {
+        "ios": "507529062200-5bt4njf538oph83p6btgodn1jeto65lj.apps.googleusercontent.com",
+        "android": "507529062200-5bt4njf538oph83p6btgodn1jeto65lj.apps.googleusercontent.com"
+      }
     }
   }
 }
