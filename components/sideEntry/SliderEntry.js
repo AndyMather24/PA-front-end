@@ -79,14 +79,14 @@ class SliderEntry extends Component {
                         style={[styles.subtitle]}
                         numberOfLines={3}
                     >
-                        countDown
+                        {countDown}
                     </Text>
                     <Text
                         style={[styles.subtitle]}
                         numberOfLines={4}
 
                     >
-                        date
+                        {date}
                     </Text>
                 </View>
             </TouchableOpacity>
