@@ -11,7 +11,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header style={styles.header} />
+        <Header style={styles.header} name="Pocket PA" />
         <Spin />
         {/* <Button title="Show me more of the app" onPress={this.showMoreApp} />
         <Button title="Actually, sign me out :)" onPress={this.signOutAsync} /> */}
@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
     height: 400,
     alignItems: "center",
     justifyContent: "center"
-  },
-
+  }
 });
 
 export default HomeScreen;
