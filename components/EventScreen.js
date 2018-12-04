@@ -38,6 +38,7 @@ class EventScreen extends Component {
     start: "home"
   };
 
+  
   render() {
     const { bookInfo } = this.state;
     const { event } = this.props.navigation.state.params;

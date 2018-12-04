@@ -9,6 +9,7 @@ import locationImages from './static/locationImages';
 //import { ENTRIES1, ENTRIES2 } from "./static/entries";
 const SLIDER_1_FIRST_ITEM = 1;
 
+
 export default class Spin extends Component {
   constructor(props) {
     super(props);

@@ -8,6 +8,7 @@ class HomeScreen extends React.Component {
     header: null
   };
 
+  
   render() {
     return (
       <View style={styles.container}>

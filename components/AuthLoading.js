@@ -8,6 +8,7 @@ import {
   Text
 } from "react-native";
 
+
 class AuthLoadingScreen extends React.Component {
   constructor() {
     super();

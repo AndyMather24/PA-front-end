@@ -10,6 +10,7 @@ export default class Spinner extends React.Component {
   state = {
     events: []
   }
+  
   render() {
     const resizeMode = 'center';
     const remote = "https://london.ac.uk/sites/default/files/styles/promo_mobile/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=ekaaHHpi";
