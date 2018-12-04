@@ -8,9 +8,8 @@ import {
   Input,
   Label
 } from "native-base";
-import { Button, StyleSheet, Text, AsyncStorage } from "react-native";
+import { Button, StyleSheet, Text, AsyncStorage, View } from "react-native";
 import * as api from "../api/api";
-import Axios from "../node_modules/axios";
 class Forms extends Component {
   state = {
     user: "Peter Plant (fake)",
@@ -25,13 +24,11 @@ class Forms extends Component {
         <Header transparent />
         <Content style={{ marginTop: 80 }}>
           <Form transparent color="white">
-            <Text style={styles.text}> please provide this information </Text>
-            <Item floatingLabel success color="white">
-              <Label>City</Label>
-              <Input />
-            </Item>
+            <View style={styles.text}>
+              <Text style={styles.text}> Please provide these information </Text>
+            </View>
             <Item floatingLabel>
-              <Label>Home Address</Label>
+              <Label color="white">Home Address</Label>
               <Input
                 onChangeText={data => this.handleChange(data, "home_address")}
               />
@@ -41,14 +38,6 @@ class Forms extends Component {
               <Input
                 onChangeText={data => this.handleChange(data, "office_address")}
               />
-            </Item>
-            <Item floatingLabel>
-              <Label>Station</Label>
-              <Input />
-            </Item>
-            <Item floatingLabel>
-              <Label color="white">Budget</Label>
-              <Input />
             </Item>
             {!settings && (
               <Button
@@ -87,7 +76,10 @@ class Forms extends Component {
 const styles = StyleSheet.create({
   text: {
     flex: 1,
-    color: "white"
+    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 25
   }
 });
 
