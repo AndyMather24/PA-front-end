@@ -6,6 +6,7 @@ import SliderEntry from "./sideEntry/SliderEntry";
 import styles, { colors } from "./styles/index";
 import * as api from "../api/api";
 import locationImages from './static/locationImages';
+import moment from 'moment';
 //import { ENTRIES1, ENTRIES2 } from "./static/entries";
 const SLIDER_1_FIRST_ITEM = 1;
 
@@ -107,11 +108,13 @@ export default class Spin extends Component {
   fetchAllEvents = () => {
     api.getEvents().then(events => {
       events = events.map(event => {
+        const countDown = moment(new Date(event.start.dateTime)).endOf('hour').fromNow();
         return {
           title: event.summary,
           subtitle: event.location,
-          date: event.start.dateTime,
-          illustration: this.selectImage(event.location) //this.SelectImage(event.location)//this.SelectImage(event.location)//(event.location.includes('Bristol')) ? "http://i.imgur.com/KZsmUi2l.jpg" : "http://i.imgur.com/UYiroysl.jpg"
+          date: moment(event.start.dateTime).format('LLLL'),
+          illustration: this.selectImage(event.location),
+          countDown
         };
       });
       this.setState({

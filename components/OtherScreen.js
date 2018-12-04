@@ -27,35 +27,29 @@ class OtherScreen extends React.Component {
         <Content>
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
-              return (
-                <View key={event.id} style={styles.card}>
-                  <ListItem thumbnail noBorder>
-                    <Left>
-                      <Thumbnail
-                        style={styles.image}
-                        square
-                        source={{ uri: event.illustration }}
-                      />
-                    </Left>
-                    <Body>
-                      <Text style={styles.textTitle}>{event.title}</Text>
-                      <Text style={styles.textLocation}>{event.subtitle}</Text>
-                      <Text style={styles.textDate}>
-                        {moment(event.date).format("LLLL")}
-                      </Text>
-                    </Body>
-                    <Right>
-                      <Button
-                        color="white"
-                        title="view"
-                        onPress={() => this.props.navigation.navigate("Event")}
-                      >
-                        <Text>View</Text>
-                      </Button>
-                    </Right>
-                  </ListItem>
-                </View>
-              );
+              return <View key={event.id} style={styles.card}>
+                <ListItem thumbnail noBorder>
+                  <Left>
+                    <Thumbnail style={styles.image} square source={{ uri: event.illustration }} />
+                  </Left>
+                  <Body>
+                    <Text style={styles.textTitle}>
+                      {event.title}
+                    </Text>
+                    <Text style={styles.textLocation}>
+                      {event.subtitle}
+                    </Text>
+                    <Text style={styles.textDate}>
+                      {moment(event.date).format('LLLL')}
+                    </Text>
+                  </Body>
+                  <Right>
+                    <Button color="white" title="view" onPress={() => this.props.navigation.navigate("Event", { event })}>
+                      <Text>View</Text>
+                    </Button>
+                  </Right>
+                </ListItem>
+              </View>;
             })}
           </List>
         </Content>

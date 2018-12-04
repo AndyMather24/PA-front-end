@@ -4,7 +4,6 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry';
-// import styles from "../styles/ToggledSlider";
 class SliderEntry extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +12,6 @@ class SliderEntry extends Component {
             gestureName: 'none',
         };
     }
-
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -43,9 +41,8 @@ class SliderEntry extends Component {
     }
 
     render() {
-        let { data: { title, subtitle, date } } = this.props;
-        // date = moment(date).format('LLLL');
-        // const countDown = moment(date).startOf('hour').fromNow();
+
+        let { data: { title, subtitle, date, countDown } } = this.props;
         const uppercaseTitle = title ? (
             <Text
                 style={styles.title}
