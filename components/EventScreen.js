@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as api from "../api/api";
 import { WebBrowser } from "expo";
 
+
 const options = [
   {
     label: "Home",
@@ -35,6 +36,7 @@ const options = [
 class EventScreen extends Component {
   state = {
     bookInfo: [],
+
     start: "home"
   };
 
@@ -104,6 +106,7 @@ class EventScreen extends Component {
 
   linkTo = () => {
     WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
+
   };
 }
 

@@ -19,7 +19,6 @@ class Forms extends Component {
   };
 
   render() {
-    
     const { settings } = this.props;
     return (
       <Container style={{ backgroundColor: "#1B2737" }}>

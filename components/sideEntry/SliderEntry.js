@@ -13,7 +13,6 @@ class SliderEntry extends Component {
             gestureName: 'none',
         };
     }
-
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -43,9 +42,7 @@ class SliderEntry extends Component {
     }
 
     render() {
-        let { data: { title, subtitle, date } } = this.props;
-        // date = moment(date).format('LLLL');
-        // const countDown = moment(date).startOf('hour').fromNow();
+        let { data: { title, subtitle, date, countDown } } = this.props;
         const uppercaseTitle = title ? (
             <Text
                 style={styles.title}
@@ -82,14 +79,14 @@ class SliderEntry extends Component {
                         style={[styles.subtitle]}
                         numberOfLines={3}
                     >
-                        {/* {countDown} */}
+                        countDown
                     </Text>
                     <Text
                         style={[styles.subtitle]}
                         numberOfLines={4}
 
                     >
-                        {/* {date} */}
+                        date
                     </Text>
                 </View>
             </TouchableOpacity>
