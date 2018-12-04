@@ -6,7 +6,6 @@ import { Ionicons } from "@expo/vector-icons";
 import * as api from "../api/api";
 import { WebBrowser } from "expo";
 
-
 const options = [
   {
     label: "Home",
@@ -40,14 +39,22 @@ class EventScreen extends Component {
     start: "home"
   };
 
-  
   render() {
     const { bookInfo } = this.state;
     const { event } = this.props.navigation.state.params;
     console.log(bookInfo);
     return (
       <View>
-        <Header leftComponent={{ icon: "home", color: "#fff" }} />
+        <Header
+          leftComponent={
+            <Ionicons
+              size={18}
+              color="#fff"
+              name="ios-home"
+              onPress={() => this.props.navigation.navigate("Events")}
+            />
+          }
+        />
         <ScrollView>
           <Card title="Book" image={require("../assets/2nCt3Sbl.jpg")}>
             <Text style={{ marginBottom: 10 }}>
@@ -106,7 +113,6 @@ class EventScreen extends Component {
 
   linkTo = () => {
     WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
-
   };
 }
 
