@@ -7,6 +7,7 @@ import {
   TextInput
 } from "react-native";
 import { googleApi } from "../api/googleApi";
+import { WebBrowser, AuthSession } from "expo";
 
 class SignInScreen extends React.Component {
   state = {
@@ -42,6 +43,10 @@ class SignInScreen extends React.Component {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  linkTo = () => {
+    WebBrowser.openBrowserAsync("https://projectpa-223310.firebaseapp.com/");
   };
 }
 
