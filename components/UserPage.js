@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  AsyncStorage
+} from "react-native";
 class User extends Component {
   static navigationOptions = {
     title: "Profile",
@@ -10,7 +17,7 @@ class User extends Component {
     avatar:
       "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
   };
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,7 +42,10 @@ class User extends Component {
           <Button
             color="white"
             title="Sign out"
-            onPress={() => this.props.navigation.navigate("Auth")}
+            onPress={async () => {
+              this.props.navigation.navigate("Auth");
+              await AsyncStorage.clear();
+            }}
           />
         </View>
       </View>

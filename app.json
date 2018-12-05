@@ -22,9 +22,12 @@
       "supportsTablet": true
     },
     "extra": {
-      "googleAppId": {
-        "ios": "507529062200-5bt4njf538oph83p6btgodn1jeto65lj.apps.googleusercontent.com",
-        "android": "507529062200-5bt4njf538oph83p6btgodn1jeto65lj.apps.googleusercontent.com"
+      "googleId": {
+        "ios": "788035555663-96evmiui7josgd3l25pkh9vd6kqlqt42.apps.googleusercontent.com",
+        "android": "com.googleusercontent.apps.788035555663-96evmiui7josgd3l25pkh9vd6kqlqt42"
+      },
+      "google": {
+        "ios": "788035555663-t4d5elf4v4qejr1ib3j0r9c07fsourg4.apps.googleusercontent.com"
       }
     }
   }
