@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, Image, ScrollView } from "react-native";
+import { View, StyleSheet, Button, Text, Image, ScrollView } from "react-native";
 import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import moment from "moment";
@@ -16,7 +16,7 @@ const options = [
       <Ionicons
         name="ios-home"
         size={18}
-        color="#0066CC"
+        color="#151E29"
         style={{ paddingRight: 10 }}
       />
     )
@@ -27,7 +27,7 @@ const options = [
     customIcon: (
       <Ionicons
         size={18}
-        color="#0066CC"
+        color="#151E29"
         name="ios-briefcase"
         style={{ paddingRight: 10 }}
       />
@@ -50,15 +50,12 @@ class EventScreen extends Component {
     return (
 
       <View style={styles.container} >
-        <Header containerStyle={{
-          backgroundColor: '#151E29',
-          justifyContent: 'space-around',
-        }} leftComponent={{ icon: "home", color: "#fff", }} />
+        <Header transparent leftComponent={{ icon: "home", color: "#fff", }} />
         <ScrollView>
           <Card title="Travel">
             <Image
-              style={styles.image}
-              source={{ uri: event.illustration }}
+              style={{}}
+              source={{ uri: 'https://www.birmingham.ac.uk/Images/News/dubai-image.jpg' }}
             />
             <Text style={{ marginBottom: 5, fontWeight: 'bold' }}>
               {event.title} {'in'} {event.subtitle}
@@ -69,6 +66,7 @@ class EventScreen extends Component {
             </Text>
 
             <SwitchSelector
+              buttonColor='#1D8DEE'
               hasPadding={true}
               options={options}
               initial={0}
@@ -78,25 +76,45 @@ class EventScreen extends Component {
           {this.state.bookInfo.map((bookinginfo, i) => {
 
             return (
-              <PricingCard styles={styles.transportCard} key={i}
-                color="#1B2737"
-                title={(bookinginfo.departure_time) ? 'Outgoing Transport' : 'Return Transport'}
-                containerStyle={{ borderRadius: 15 }}
-                info={
-                  [
-                    `Departure time: ${bookinginfo.departure_time || bookinginfo.r_departure_time}`,
-                    `Arrival time: ${bookinginfo.arrival_time || bookinginfo.r_arrival_time}`,
-                    `From: ${bookinginfo.departure_stop || bookinginfo.r_departure_stop}`,
-                    `To: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`,
-                    `Duration: ${bookinginfo.duration || bookinginfo.r_duration}`
-                  ]}
-                button={{
-                  title: "BOOK NOW", icon: 'train'
-                }}
-                onButtonPress={this.linkTo('http://ojp.nationalrail.co.uk/service/timesandfares/Liverpool%20Lime%20Street/Manchester%20Victoria/11122018/1856/dep?utm_source=googlemaps&utm_medium=web&utm_campaign=googlemaps')}
-              />
+              <Card key={i}
+              >
+                <View>
+                  <Text style={{
+                    fontSize: 25,
+                    fontWeight: 'bold',
+                    paddingBottom: 10,
+                    textAlign: 'center'
+                  }}>
+                    {(bookinginfo.departure_time) ? 'Outgoing Transport' : 'Return Transport'}
+                  </Text>
+                  <Text style={styles.paddingText}>
+                    {`Departure Time: ${bookinginfo.departure_time || bookinginfo.r_departure_time}`}
+                  </Text>
+                  <Text style={styles.paddingText}>
+                    {`Arrival Time: ${bookinginfo.arrival_time || bookinginfo.r_arrival_time}`}
+                  </Text>
+                  <Text style={styles.paddingText}>
+                    {`From: ${bookinginfo.departure_stop || bookinginfo.r_departure_stop}`}
+                  </Text>
+                  <Text style={styles.paddingText}>
+                    {`To: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                  </Text>
+                  <Text style={styles.paddingText}>
+                    {`Duration: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                  </Text>
+                </View>
+              </Card>
+
             )
           })}
+          <Card>
+            <Button onPress={this.linkTo}
+              // icon={<Icon name='train' color='#ffffff' />}
+              backgroundColor='#03A9F4'
+              buttonStyle={{ borderRadius: 15, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+              title='BOOK TRANSPORT' />
+          </Card>
+
 
           {/* <PricingCard
             color="#4f9deb"
@@ -131,8 +149,9 @@ class EventScreen extends Component {
     this.setState({ start });
   };
 
-  linkTo = (link) => {
-    WebBrowser.openBrowserAsync(link);
+
+  linkTo = () => {
+    WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
 
   };
 }
@@ -142,8 +161,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#151E29"
   },
-  transportCard: {
-    backgroundColor: '#1B2737'
+
+  paddingText: {
+    paddingBottom: 5
   }
 });
 
