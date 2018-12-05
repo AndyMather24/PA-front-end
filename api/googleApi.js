@@ -2,13 +2,15 @@ import { Google, Constants } from "expo";
 const scopes = ["profile", "email"];
 const loginSync = async () => {
   try {
-    const result = Google.logInAsync({
+    const result = await Google.logInAsync({
+      behavior: 'web',
       androidClientId: Constants.manifest.extra.googleAppId.android,
       iosClientId: Constants.manifest.extra.googleAppId.ios,
       androidStandaloneAppClientId: "",
       iosStandaloneAppClientId: "",
       scopes
     });
+    console.log(result)
     if (result.type === "success") {
       return Promise.resolve(result.accessToken);
     } else {
