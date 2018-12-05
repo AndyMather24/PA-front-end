@@ -20,7 +20,9 @@ class SignInScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Button title="Sign in!" onPress={this.signInAsync} />
+
       </View>
     );
   }
