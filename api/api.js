@@ -17,3 +17,11 @@ export const getEventById = async (id, start) => {
   );
   return data;
 };
+
+export const arrangeEvent = async (id) => {
+  const { data } = await axios.patch(
+    `https://pa-backend1.herokuapp.com/handledEvent/${id}?handled=true`
+  );
+  return data;
+};
+
