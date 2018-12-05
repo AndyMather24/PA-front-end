@@ -13,9 +13,9 @@ export default class Header extends Component {
         </View>
       </View>
     );
-  
-}
 
+  }
+}
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: "#151E29",

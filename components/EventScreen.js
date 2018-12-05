@@ -46,7 +46,7 @@ class EventScreen extends Component {
       console.log(this.state.bookInfo)
     }
     return (
-      <View>
+      <View style={styles.container} >
         <Header
           leftComponent={
             <Ionicons
@@ -57,9 +57,6 @@ class EventScreen extends Component {
             />
           }
         />
-
-
-      <View style={styles.container} >
         <ScrollView>
           <Card title="Travel">
             <Image
