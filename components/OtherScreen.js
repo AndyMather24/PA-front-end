@@ -51,7 +51,7 @@ class OtherScreen extends React.Component {
                         onPress={() =>
                           this.props.navigation.navigate("Event", { event })
                         }
-                        
+
                       >
                         <Text>View</Text>
                       </Button>
@@ -112,10 +112,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white"
   },
-  textLocation: {
-    color: "white"
-  },
-  textDate: {
+
+  text: {
     color: "white"
   },
   image: {

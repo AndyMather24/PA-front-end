@@ -26,12 +26,11 @@ class SignInScreen extends React.Component {
           placeholder="password"
           secureTextEntry={true}
         />
-        <Button title="Sign in!" onPress={this.signInAsync} />
+        <Button title="Sign in!" onPress={this.googleSignIn} />
       </View>
     );
   }
 
-  
   signInAsync = async () => {
     await AsyncStorage.setItem("userToken", "abc");
     this.props.navigation.navigate("Form");
