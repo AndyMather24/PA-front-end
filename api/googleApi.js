@@ -10,7 +10,6 @@ const loginSync = async () => {
       iosStandaloneAppClientId: "",
       scopes
     });
-    console.log(result)
     if (result.type === "success") {
       return Promise.resolve(result.accessToken);
     } else {

@@ -31,7 +31,6 @@ class SignInScreen extends React.Component {
     );
   }
 
-
   signInAsync = async () => {
     await AsyncStorage.setItem("userToken", "abc");
     this.props.navigation.navigate("Form");
