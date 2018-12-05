@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  AsyncStorage,
-  Button,
-  StyleSheet,
-  View,
-  TextInput
-} from "react-native";
+import { AsyncStorage, Button, StyleSheet, View } from "react-native";
+import { Thumbnail } from "native-base";
 import { googleApi } from "../api/googleApi";
 import { WebBrowser, AuthSession } from "expo";
 
@@ -20,7 +15,8 @@ class SignInScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Sign in!" onPress={this.googleSignIn} />
+        <Thumbnail square source={require("../assets/googleLogin.png")} />
+        <Button title="Sign in with Google" onPress={this.googleSignIn} />
       </View>
     );
   }
