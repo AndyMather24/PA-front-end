@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Image, StyleSheet, Button } from "react-native";
 class User extends Component {
   static navigationOptions = {
-    title: "profile!",
+    title: "Profile",
     header: "profile"
   };
   state = {
@@ -27,12 +27,13 @@ class User extends Component {
           </Text>
         </View>
         <View style={styles.settings}>
-          <Button color="white"
+          <Button
+            color="white"
             title="Settings"
             onPress={() => this.props.navigation.navigate("Setting")}
           />
           <Button
-            color= "white"
+            color="white"
             title="Sign out"
             onPress={() => this.props.navigation.navigate("Auth")}
           />
