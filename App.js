@@ -1,5 +1,4 @@
 import React from "react";
-import Spinner from "./components/Spinner";
 
 import {
   createStackNavigator,
@@ -21,7 +20,6 @@ const AppStack = createStackNavigator({
     }
   },
   Other: OtherScreen,
-  Spinner: Spinner
 });
 const AuthStack = createStackNavigator({
   SignIn: {

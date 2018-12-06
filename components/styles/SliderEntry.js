@@ -40,6 +40,7 @@ export default StyleSheet.create({
     toggleImageContainer: {
         flex: 0.5,
         backgroundColor: "white",
+        marginBottom: -80,
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius
     },
@@ -91,7 +92,7 @@ export default StyleSheet.create({
     },
     title: {
         color: colors.black,
-        fontSize: 13,
+        fontSize: 26,
         fontWeight: 'bold',
         letterSpacing: 0.5
     },
@@ -99,9 +100,9 @@ export default StyleSheet.create({
         color: 'white'
     },
     subtitle: {
-        marginTop: 6,
+        marginTop: 2,
         color: colors.gray,
-        fontSize: 12,
+        fontSize: 16,
         fontStyle: 'italic'
     },
     subtitleEven: {
