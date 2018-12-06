@@ -14,7 +14,8 @@ const locationImages = {
   Edinburgh: "https://speedybooker.com/pool/edinburgh-university-rooms.jpg",
   Liverpool:
     "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/liverpool-city-and-river-mersey-steve-kearns.jpg",
-  Birmingham: "https://www.birmingham.ac.uk/Images/News/dubai-image.jpg"
+  Birmingham:
+    "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/08/29/1113/Hyatt-Regency-Birmingham-P046-Exterior.jpg/Hyatt-Regency-Birmingham-P046-Exterior.16x9.adapt.1920.1080.jpg"
 };
 
 export default locationImages;
