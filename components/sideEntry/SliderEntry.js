@@ -88,7 +88,7 @@ class SliderEntry extends Component {
                         style={[styles.subtitle]}
                         numberOfLines={4}
                     >
-                        {moment(date).format("LLLL")}
+                        {moment(date).format("MMMM Do YYYY") + ' ' + date.slice(11, 16)}
                     </Text>
 
                     <Text style={[styles.subtitle]}
