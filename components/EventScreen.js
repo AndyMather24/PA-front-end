@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Button, Text, Image, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Button,
+  Text,
+  Image,
+  ScrollView
+} from "react-native";
 import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import moment from "moment";
@@ -41,19 +48,31 @@ class EventScreen extends Component {
 
   render() {
     const { event } = this.props.navigation.state.params;
-    { console.log(event) }
     {
-      console.log(this.state.bookInfo)
+      console.log(event);
+    }
+    {
+      console.log(this.state.bookInfo);
     }
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <Header
           leftComponent={
             <Ionicons
-              size={18}
+              size={20}
+              color="#fff"
+              name="ios-arrow-dropleft"
+              style={{ marginBottom: -8 }}
+              onPress={() => this.props.navigation.navigate("Events")}
+            />
+          }
+          rightComponent={
+            <Ionicons
+              size={20}
               color="#fff"
               name="ios-home"
-              onPress={() => this.props.navigation.navigate("Events")}
+              style={{ marginBottom: -8 }}
+              onPress={() => this.props.navigation.navigate("App")}
             />
           }
         />
@@ -61,10 +80,12 @@ class EventScreen extends Component {
           <Card title="Travel">
             <Image
               style={{}}
-              source={{ uri: 'https://www.birmingham.ac.uk/Images/News/dubai-image.jpg' }}
+              source={{
+                uri: "https://www.birmingham.ac.uk/Images/News/dubai-image.jpg"
+              }}
             />
-            <Text style={{ marginBottom: 5, fontWeight: 'bold' }}>
-              {event.title} {'in'} {event.subtitle}
+            <Text style={{ marginBottom: 5, fontWeight: "bold" }}>
+              {event.title} {"in"} {event.subtitle}
             </Text>
 
             <Text style={{ paddingBottom: 10, fontStyle: "italic" }}>
@@ -72,7 +93,7 @@ class EventScreen extends Component {
             </Text>
 
             <SwitchSelector
-              buttonColor='#1D8DEE'
+              buttonColor="#1D8DEE"
               hasPadding={true}
               options={options}
               initial={0}
@@ -80,47 +101,60 @@ class EventScreen extends Component {
             />
           </Card>
           {this.state.bookInfo.map((bookinginfo, i) => {
-
             return (
-              <Card key={i}
-              >
+              <Card key={i}>
                 <View>
-                  <Text style={{
-                    fontSize: 25,
-                    fontWeight: 'bold',
-                    paddingBottom: 10,
-                    textAlign: 'center'
-                  }}>
-                    {(bookinginfo.departure_time) ? 'Outgoing Transport' : 'Return Transport'}
+                  <Text
+                    style={{
+                      fontSize: 25,
+                      fontWeight: "bold",
+                      paddingBottom: 10,
+                      textAlign: "center"
+                    }}
+                  >
+                    {bookinginfo.departure_time
+                      ? "Outgoing Transport"
+                      : "Return Transport"}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Departure Time: ${bookinginfo.departure_time || bookinginfo.r_departure_time}`}
+                    {`Departure Time: ${bookinginfo.departure_time ||
+                      bookinginfo.r_departure_time}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Arrival Time: ${bookinginfo.arrival_time || bookinginfo.r_arrival_time}`}
+                    {`Arrival Time: ${bookinginfo.arrival_time ||
+                      bookinginfo.r_arrival_time}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`From: ${bookinginfo.departure_stop || bookinginfo.r_departure_stop}`}
+                    {`From: ${bookinginfo.departure_stop ||
+                      bookinginfo.r_departure_stop}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`To: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                    {`To: ${bookinginfo.arrival_stop ||
+                      bookinginfo.r_arrival_stop}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Duration: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                    {`Duration: ${bookinginfo.arrival_stop ||
+                      bookinginfo.r_arrival_stop}`}
                   </Text>
                 </View>
               </Card>
-
-            )
+            );
           })}
           <Card>
-            <Button onPress={this.linkTo}
-              // icon={<Icon name='train' color='#ffffff' />}
-              backgroundColor='#03A9F4'
-              buttonStyle={{ borderRadius: 15, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-              title='BOOK TRANSPORT' />
+            <Button
+              onPress={this.linkTo}
+              backgroundColor="#03A9F4"
+              buttonStyle={
+                {
+                  borderRadius: 15,
+                  marginLeft: 0,
+                  marginRight: 0,
+                  marginBottom: 0
+                } // icon={<Icon name='train' color='#ffffff' />}
+              }
+              title="BOOK TRANSPORT"
+            />
           </Card>
-
 
           {/* <PricingCard
             color="#4f9deb"
@@ -131,7 +165,7 @@ class EventScreen extends Component {
             onButtonPress={() => this.props.navigation.navigate("App")}
           /> */}
         </ScrollView>
-      </View >
+      </View>
     );
   }
   componentDidUpdate(prevProp, prevState) {
@@ -148,13 +182,10 @@ class EventScreen extends Component {
     api.getEventById(id, start).then(transport => {
       this.setState({ bookInfo: transport });
     });
-
-
   };
   toggleStart = start => {
     this.setState({ start });
   };
-
 
   linkTo = () => {
     WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
