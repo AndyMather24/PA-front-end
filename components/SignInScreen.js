@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Thumbnail } from "native-base";
 import { googleApi } from "../api/googleApi";
+import Headercomponent from "./Headercomponent";
 
 class SignInScreen extends React.Component {
   state = {
@@ -19,18 +20,27 @@ class SignInScreen extends React.Component {
   };
   render() {
     return (
+
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Thumbnail
-          square
-          source={require("../assets/googleLogin.png")}
-          style={{ marginBottom: 10 }}
-        />
-        <Button
-          color="white"
-          title="Sign in with Google"
-          onPress={this.googleSignIn}
-        />
+        <View style={styles.headerContainer}>
+          <Headercomponent />
+        </View>
+        <View style={styles.googleContainer}>
+          <Thumbnail
+            square
+            source={require("../assets/googleLogin.png")}
+            style={{ marginBottom: 20 }}
+          />
+          <View style={styles.buttonStyle}>
+            <Button
+              color="#151E29"
+              title="Sign in with Google"
+              onPress={this.googleSignIn}
+            />
+          </View>
+
+        </View>
       </View>
     );
   }
@@ -55,9 +65,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#1B2737",
+    backgroundColor: "#151E29",
     color: "white"
+  },
+  headerContainer: {
+    marginTop: 70
+  },
+  googleContainer: {
+    marginTop: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#151E29",
+    color: "white"
+  },
+  buttonStyle: {
+    backgroundColor: 'white',
+    borderRadius: 25,
+
   }
 });
 

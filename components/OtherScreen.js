@@ -27,6 +27,7 @@ class OtherScreen extends React.Component {
       <Container style={{ backgroundColor: "#151E29" }}>
         <Headercomponent style={styles.header} name="PocketPA" />
         <Content>
+          {!this.state.events.length && <Text style={{ margin: 100, textAlign: 'center', color: 'grey', fontSize: 20 }}> {"All events have been handled"} </Text>}
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
               return (
@@ -64,7 +65,7 @@ class OtherScreen extends React.Component {
             })}
           </List>
         </Content>
-      </Container>
+      </Container >
     );
   }
   componentDidMount = () => {

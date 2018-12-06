@@ -12,7 +12,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Headercomponent style={styles.header} name="Pocket PA" />
+        <Headercomponent />
         <Spin />
       </View>
     );
