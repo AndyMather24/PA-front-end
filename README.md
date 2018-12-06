@@ -1,6 +1,6 @@
 # Pocket PA
 
-Pocket PA is an mobile application build with React-Native as a final project case for graduating Northcoders JavaScript boot-camp. The aim of the application is to help the user to easily access their calendar events and to make it easier for the user to be able to get the price of train tickets to a certain destination based on th event.
+Pocket PA is an mobile application build with React-Native as a final project case for graduating Northcoders JavaScript boot-camp. The aim of the application is to help the user to easily access their calendar events and to make it easier for the user to be able to arrange business travel to a certain destination based on the calender event.
 
 
 -this Repo represents the front end to the project.
