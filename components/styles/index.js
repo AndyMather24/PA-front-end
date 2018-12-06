@@ -23,7 +23,8 @@ export default StyleSheet.create({
         paddingBottom: 50
     },
     exampleContainer: {
-        marginBottom: 30
+        //marginBottom: 30,
+
     },
     title: {
         paddingHorizontal: 30,

@@ -3,9 +3,11 @@ import { View, StyleSheet, Button, Text, Image, ScrollView } from "react-native"
 import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import moment from "moment";
+import Loading from './Loading'
 import { Ionicons } from "@expo/vector-icons";
 import * as api from "../api/api";
 import { WebBrowser } from "expo";
+
 
 const options = [
   {
@@ -36,21 +38,19 @@ const options = [
 class EventScreen extends Component {
   state = {
     bookInfo: [],
-    start: "home"
+    start: "home",
+    loading: true,
   };
 
   render() {
     const { event } = this.props.navigation.state.params;
-    { console.log(event) }
-    {
-      console.log(this.state.bookInfo)
-    }
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <Header
-          leftComponent={
+
+          rightComponent={
             <Ionicons
-              size={18}
+              size={26}
               color="#fff"
               name="ios-home"
               onPress={() => this.props.navigation.navigate("Events")}
@@ -58,17 +58,15 @@ class EventScreen extends Component {
           }
         />
         <ScrollView>
-          <Card title="Travel">
-            <Image
-              style={{}}
-              source={{ uri: 'https://www.birmingham.ac.uk/Images/News/dubai-image.jpg' }}
-            />
-            <Text style={{ marginBottom: 5, fontWeight: 'bold' }}>
+          <Card title="Travel" titleStyle={{ color: 'white' }} containerStyle={{ borderRadius: 15, borderColor: "#1B2737", backgroundColor: "#1B2737" }}
+            image={{ url: event.illustration }}>
+            <Text style={{ color: 'white', marginBottom: 5, fontWeight: 'bold' }}>
               {event.title} {'in'} {event.subtitle}
             </Text>
 
-            <Text style={{ paddingBottom: 10, fontStyle: "italic" }}>
-              {moment(event.date).format("LLLL")}
+            <Text style={{ color: 'white', paddingBottom: 10, fontStyle: "italic" }}>
+              {moment(event.date).format("MMMM Do YYYY")} {event.date.slice(11, 16) + '-' + event.endDate.slice(11, 16)}
+
             </Text>
 
             <SwitchSelector
@@ -79,14 +77,17 @@ class EventScreen extends Component {
               onPress={value => this.toggleStart(value)}
             />
           </Card>
+          {this.state.loading && <Loading />}
           {this.state.bookInfo.map((bookinginfo, i) => {
 
             return (
-              <Card key={i}
+              <Card key={i} containerStyle={{ borderRadius: 25, backgroundColor: "#1B2737", borderColor: "#1B2737" }}
               >
                 <View>
+
                   <Text style={{
                     fontSize: 25,
+                    color: 'white',
                     fontWeight: 'bold',
                     paddingBottom: 10,
                     textAlign: 'center'
@@ -106,30 +107,17 @@ class EventScreen extends Component {
                     {`To: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Duration: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                    {`Destination: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
                   </Text>
                 </View>
               </Card>
 
             )
           })}
-          <Card>
+          {!this.state.loading && <Card containerStyle={{ backgroundColor: "white", borderColor: "white", borderRadius: 35, padding: 5 }} >
             <Button onPress={this.linkTo}
-              // icon={<Icon name='train' color='#ffffff' />}
-              backgroundColor='#03A9F4'
-              buttonStyle={{ borderRadius: 15, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
               title='BOOK TRANSPORT' />
-          </Card>
-
-
-          {/* <PricingCard
-            color="#4f9deb"
-            title="Transport and Accommodation"
-            price="£0"
-            info={["1 passenger", "economy", "massage"]}
-            button={{ title: "BOOK NOW", icon: "flight-takeoff" }}
-            onButtonPress={() => this.props.navigation.navigate("App")}
-          /> */}
+          </Card>}
         </ScrollView>
       </View >
     );
@@ -143,10 +131,11 @@ class EventScreen extends Component {
   componentDidMount() {
     const { event } = this.props.navigation.state.params;
     this.FetchEvent(event.id, this.state.start);
+
   }
   FetchEvent = (id, start) => {
     api.getEventById(id, start).then(transport => {
-      this.setState({ bookInfo: transport });
+      this.setState({ bookInfo: transport, loading: false });
     });
 
 
@@ -157,7 +146,9 @@ class EventScreen extends Component {
 
 
   linkTo = () => {
-    WebBrowser.openBrowserAsync(this.state.bookInfo.booking_url);
+    const { event } = this.props.navigation.state.params;
+    api.arrangeEvent(event.id)
+    WebBrowser.openBrowserAsync(this.state.bookInfo[0].booking_url);
   };
 }
 
@@ -166,9 +157,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#151E29"
   },
-
   paddingText: {
-    paddingBottom: 5
+    paddingBottom: 5,
+    color: 'white'
   }
 });
 

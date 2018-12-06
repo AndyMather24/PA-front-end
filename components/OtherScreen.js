@@ -1,6 +1,7 @@
 import React from "react";
 import * as api from "../api/api";
 import locationImages from "./static/locationImages";
+import Headercomponent from "./Headercomponent.js"
 import moment from "moment";
 import {
   Container,
@@ -24,6 +25,7 @@ class OtherScreen extends React.Component {
   render() {
     return (
       <Container style={{ backgroundColor: "#151E29" }}>
+        <Headercomponent style={styles.header} name="PocketPA" />
         <Content>
           <List style={{ marginTop: 30 }}>
             {this.state.events.map(event => {
@@ -41,7 +43,7 @@ class OtherScreen extends React.Component {
                       <Text style={styles.textTitle}>{event.title}</Text>
                       <Text style={styles.textLocation}>{event.subtitle}</Text>
                       <Text style={styles.textDate}>
-                        {moment(event.date).format("LLLL")}
+                        {moment(event.date).format("MMMM Do YYYY")} {event.date.slice(11, 16) + '-' + event.endDate.slice(11, 16)}
                       </Text>
                     </Body>
                     <Right>
@@ -81,7 +83,8 @@ class OtherScreen extends React.Component {
           id: event.id,
           title: event.summary,
           subtitle: location,
-          date: event.start.dateTime,
+          date: event.meeting_start,
+          endDate: event.meeting_end,
           illustration: this.selectImage(event.location)
         };
       });
@@ -113,7 +116,10 @@ const styles = StyleSheet.create({
     color: "white"
   },
 
-  text: {
+  textDate: {
+    color: "white"
+  },
+  textLocation: {
     color: "white"
   },
   image: {
