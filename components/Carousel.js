@@ -6,7 +6,6 @@ import SliderEntry from "./sideEntry/SliderEntry";
 import styles, { colors } from "./styles/index";
 import * as api from "../api/api";
 import locationImages from './static/locationImages';
-//import { ENTRIES1, ENTRIES2 } from "./static/entries";
 const SLIDER_1_FIRST_ITEM = 1;
 
 
@@ -60,8 +59,6 @@ export default class Spin extends Component {
           loop={true}
           loopClonesPerSide={2}
           autoplay={false}
-          //autoplayDelay={500}
-          //autoplayInterval={3000}
           onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
           inactiveSlideShift={80}
         />
@@ -105,14 +102,19 @@ export default class Spin extends Component {
   componentDidMount = () => {
     this.fetchAllEvents();
   };
+  handleToggle = () => {
+
+  }
   fetchAllEvents = () => {
-    api.getEvents().then(events => {
+    api.getArrangedEvents().then(events => {
       events = events.map(event => {
         return {
+          id: event.id,
           title: event.summary,
           subtitle: event.location,
-          date: event.start.dateTime,
-          illustration: this.selectImage(event.location) //this.SelectImage(event.location)//this.SelectImage(event.location)//(event.location.includes('Bristol')) ? "http://i.imgur.com/KZsmUi2l.jpg" : "http://i.imgur.com/UYiroysl.jpg"
+          date: event.meeting_start,
+          endDate: event.meeting_end,
+          illustration: this.selectImage(event.location)
         };
       });
       this.setState({

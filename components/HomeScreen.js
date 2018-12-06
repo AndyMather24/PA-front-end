@@ -1,6 +1,6 @@
 import React from "react";
 import { AsyncStorage, StyleSheet, View } from "react-native";
-import Header from "./Header";
+import Headercomponent from "./Headercomponent";
 import Spin from "./Carousel";
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -8,14 +8,12 @@ class HomeScreen extends React.Component {
     header: null
   };
 
-  
+
   render() {
     return (
       <View style={styles.container}>
-        <Header style={styles.header} name="PocketPA" />
+        <Headercomponent style={styles.header} name="Pocket PA" />
         <Spin />
-        {/* <Button title="Show me more of the app" onPress={this.showMoreApp} />
-        <Button title="Actually, sign me out :)" onPress={this.signOutAsync} /> */}
       </View>
     );
   }
