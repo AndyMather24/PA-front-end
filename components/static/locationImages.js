@@ -14,7 +14,7 @@ const locationImages = {
   Edinburgh: "https://speedybooker.com/pool/edinburgh-university-rooms.jpg",
   Liverpool:
     "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/liverpool-city-and-river-mersey-steve-kearns.jpg",
-  Birmingham: "https://www.birmingham.ac.uk/Images/News/dubai-image.jpg"
+  Birmingham: "https://bpsbirmingham.co.uk/wp-content/themes/bps-bham-wp-theme/images/cropped.jpg"
 };
 
 export default locationImages;
