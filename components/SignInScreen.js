@@ -1,8 +1,13 @@
 import React from "react";
-import { AsyncStorage, Button, StyleSheet, View , StatusBar} from "react-native";
+import {
+  AsyncStorage,
+  Button,
+  StyleSheet,
+  View,
+  StatusBar
+} from "react-native";
 import { Thumbnail } from "native-base";
 import { googleApi } from "../api/googleApi";
-import { WebBrowser, AuthSession } from "expo";
 
 class SignInScreen extends React.Component {
   state = {
@@ -14,12 +19,14 @@ class SignInScreen extends React.Component {
   };
   render() {
     return (
-      
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Thumbnail square source={require("../assets/googleLogin.png")} />
+        <Thumbnail
+          square
+          source={require("../assets/googleLogin.png")}
+          style={{ marginBottom: 10 }}
+        />
         <Button
-          style={{ paddingTop: 20 }}
           color="white"
           title="Sign in with Google"
           onPress={this.googleSignIn}
@@ -36,7 +43,6 @@ class SignInScreen extends React.Component {
   googleSignIn = async () => {
     try {
       const token = await googleApi.loginSync();
-      console.log(token);
       await AsyncStorage.setItem("userToken", JSON.stringify(token));
       this.props.navigation.navigate("Form");
     } catch (err) {

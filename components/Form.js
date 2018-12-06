@@ -34,13 +34,20 @@ class Forms extends Component {
         <Header transparent />
         <Content style={{ marginTop: 80 }}>
           <Form transparent color="white">
-            <View style={styles.text}>
-              <Text style={styles.text}>Hi {this.state.user.givenName}</Text>
-              <Text style={styles.text}>Please provide these information </Text>
-            </View>
+            {(!settings && (
+              <View style={styles.text}>
+                <Text style={styles.text}>Hi {this.state.user.givenName}</Text>
+                <Text style={styles.text}>
+                  Please provide these information{" "}
+                </Text>
+              </View>
+            )) || (
+              <Text style={styles.text}>Change your Home/Office Address</Text>
+            )}
             <Item floatingLabel>
               <Label color="white">Home Address</Label>
               <Input
+                color="white"
                 onChangeText={data => this.handleChange(data, "home_address")}
               />
             </Item>
@@ -50,17 +57,17 @@ class Forms extends Component {
                 onChangeText={data => this.handleChange(data, "office_address")}
               />
             </Item>
-            {!settings && (
+            {
               <Button
                 color="white"
                 title="Submit"
                 onPress={() => {
                   this.preferenceAsync();
                   this.handleSubmit(this.state);
-                  this.props.navigation.navigate("App");
+                  this.props.navigation.navigate("User");
                 }}
               />
-            )}
+            }
           </Form>
         </Content>
       </Container>

@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#151E29"
   },
   img: {
-    height: 300,
-    width: 400,
-    borderRadius: 20,
+    height: 200,
+    width: 200,
+    borderRadius: 100,
     marginTop: 50
   },
   imgContainer: {
