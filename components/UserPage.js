@@ -7,6 +7,7 @@ import {
   Button,
   AsyncStorage
 } from "react-native";
+import Headercomponent from "./Headercomponent";
 class User extends Component {
   static navigationOptions = {
     title: "Profile",
@@ -20,6 +21,7 @@ class User extends Component {
     let name = this.state.user.name || "john";
     return (
       <View style={styles.container}>
+        <Headercomponent />
         <View style={styles.imgContainer}>
           <Image
             style={styles.img}
