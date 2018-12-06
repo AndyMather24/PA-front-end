@@ -1,5 +1,5 @@
 import React from "react";
-import { AsyncStorage, Button, StyleSheet, View } from "react-native";
+import { AsyncStorage, Button, StyleSheet, View , StatusBar} from "react-native";
 import { Thumbnail } from "native-base";
 import { googleApi } from "../api/googleApi";
 import { WebBrowser, AuthSession } from "expo";
@@ -14,9 +14,16 @@ class SignInScreen extends React.Component {
   };
   render() {
     return (
+      
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <Thumbnail square source={require("../assets/googleLogin.png")} />
-        <Button title="Sign in with Google" onPress={this.googleSignIn} />
+        <Button
+          style={{ paddingTop: 20 }}
+          color="white"
+          title="Sign in with Google"
+          onPress={this.googleSignIn}
+        />
       </View>
     );
   }
@@ -42,7 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#1B2737",
+    color: "white"
   }
 });
 

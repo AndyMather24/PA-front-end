@@ -23,7 +23,14 @@ const AppStack = createStackNavigator({
   Other: OtherScreen,
   Spinner: Spinner
 });
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+const AuthStack = createStackNavigator({
+  SignIn: {
+    screen: SignInScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
+});
 
 export default createAppContainer(
   createSwitchNavigator(
