@@ -15,7 +15,10 @@ const locationImages = {
   Liverpool:
     "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/liverpool-city-and-river-mersey-steve-kearns.jpg",
   Birmingham:
-    "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/08/29/1113/Hyatt-Regency-Birmingham-P046-Exterior.jpg/Hyatt-Regency-Birmingham-P046-Exterior.16x9.adapt.1920.1080.jpg"
+    "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/08/29/1113/Hyatt-Regency-Birmingham-P046-Exterior.jpg/Hyatt-Regency-Birmingham-P046-Exterior.16x9.adapt.1920.1080.jpg",
+  Dubai: "https://www.birmingham.ac.uk/Images/News/dubai-image.jpg",
+  Sheffield:
+    "http://www.bdp.com/globalassets/news/2018/sheffield-hallam-university-masterplan/sheffield-hallam-masterplan-news-image-1200px.jpg"
 };
 
 export default locationImages;
