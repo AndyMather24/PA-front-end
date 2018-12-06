@@ -12,15 +12,11 @@ class Settings extends Component {
           settings={true}
           home={this.storagePref().home}
           office={this.storagePref().office}
+          navigation={this.props.navigation}
         />
 
-
         <View style={styles.container}>
-          <Button
-            color="white"
-            title="Save changes"
-            onPress={() => this.props.navigation.navigate("User")}
-          />
+
           <Button
             color="white"
             title="Discard"

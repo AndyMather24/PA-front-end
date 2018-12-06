@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Button, Text, Image, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Button,
+  Text,
+  Image,
+  ScrollView
+} from "react-native";
 import { Card, PricingCard, Header } from "react-native-elements";
 import SwitchSelector from "react-native-switch-selector";
 import moment from "moment";
@@ -50,10 +57,20 @@ class EventScreen extends Component {
 
           rightComponent={
             <Ionicons
-              size={26}
+              size={20}
+              color="#fff"
+              name="ios-arrow-dropleft"
+              style={{ marginBottom: -8 }}
+              onPress={() => this.props.navigation.navigate("Events")}
+            />
+          }
+          rightComponent={
+            <Ionicons
+              size={20}
               color="#fff"
               name="ios-home"
-              onPress={() => this.props.navigation.navigate("Events")}
+              style={{ marginBottom: -8 }}
+              onPress={() => this.props.navigation.navigate("App")}
             />
           }
         />
@@ -70,7 +87,7 @@ class EventScreen extends Component {
             </Text>
 
             <SwitchSelector
-              buttonColor='#1D8DEE'
+              buttonColor="#1D8DEE"
               hasPadding={true}
               options={options}
               initial={0}
@@ -79,12 +96,10 @@ class EventScreen extends Component {
           </Card>
           {this.state.loading && <Loading />}
           {this.state.bookInfo.map((bookinginfo, i) => {
-
             return (
               <Card key={i} containerStyle={{ borderRadius: 25, backgroundColor: "#1B2737", borderColor: "#1B2737" }}
               >
                 <View>
-
                   <Text style={{
                     fontSize: 25,
                     color: 'white',
@@ -95,31 +110,34 @@ class EventScreen extends Component {
                     {(bookinginfo.departure_time) ? 'Outgoing Transport' : 'Return Transport'}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Departure Time: ${bookinginfo.departure_time || bookinginfo.r_departure_time}`}
+                    {`Departure Time: ${bookinginfo.departure_time ||
+                      bookinginfo.r_departure_time}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`Arrival Time: ${bookinginfo.arrival_time || bookinginfo.r_arrival_time}`}
+                    {`Arrival Time: ${bookinginfo.arrival_time ||
+                      bookinginfo.r_arrival_time}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`From: ${bookinginfo.departure_stop || bookinginfo.r_departure_stop}`}
+                    {`From: ${bookinginfo.departure_stop ||
+                      bookinginfo.r_departure_stop}`}
                   </Text>
                   <Text style={styles.paddingText}>
-                    {`To: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
+                    {`To: ${bookinginfo.arrival_stop ||
+                      bookinginfo.r_arrival_stop}`}
                   </Text>
                   <Text style={styles.paddingText}>
                     {`Destination: ${bookinginfo.arrival_stop || bookinginfo.r_arrival_stop}`}
                   </Text>
                 </View>
               </Card>
-
-            )
+            );
           })}
           {!this.state.loading && <Card containerStyle={{ backgroundColor: "white", borderColor: "white", borderRadius: 35, padding: 5 }} >
             <Button onPress={this.linkTo}
               title='BOOK TRANSPORT' />
           </Card>}
         </ScrollView>
-      </View >
+      </View>
     );
   }
   componentDidUpdate(prevProp, prevState) {
@@ -137,13 +155,10 @@ class EventScreen extends Component {
     api.getEventById(id, start).then(transport => {
       this.setState({ bookInfo: transport, loading: false });
     });
-
-
   };
   toggleStart = start => {
     this.setState({ start });
   };
-
 
   linkTo = () => {
     const { event } = this.props.navigation.state.params;

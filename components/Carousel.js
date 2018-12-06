@@ -8,7 +8,6 @@ import * as api from "../api/api";
 import locationImages from './static/locationImages';
 const SLIDER_1_FIRST_ITEM = 1;
 
-
 export default class Spin extends Component {
   constructor(props) {
     super(props);
@@ -78,7 +77,6 @@ export default class Spin extends Component {
     );
   }
 
-
   render() {
     return (
       <View style={styles.container}>
@@ -123,10 +121,10 @@ export default class Spin extends Component {
     });
   };
 
-  selectImage = (location) => {
+  selectImage = location => {
     const matchingLocation = Object.keys(locationImages).filter(locate => {
       return location.includes(locate);
-    })
-    return locationImages[matchingLocation.join('')]
-  }
+    });
+    return locationImages[matchingLocation.join("")];
+  };
 }

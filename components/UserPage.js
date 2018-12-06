@@ -1,30 +1,31 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  AsyncStorage
+} from "react-native";
 class User extends Component {
   static navigationOptions = {
     title: "Profile",
     header: "profile"
   };
   state = {
-    username: "peterPlant",
-    avatar:
-      "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
+    user: {}
   };
-  
+
   render() {
+    let name = this.state.user.name || "john";
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
           <Image
             style={styles.img}
-            source={{
-              uri:
-                "https://pickaface.net/gallery/avatar/unr_goateebald_170216_1834_yvoxe.png"
-            }}
+            source={{ uri: this.state.user.photoUrl }}
           />
-          <Text style={styles.text}>
-            {this.state.username.toLocaleUpperCase()}
-          </Text>
+          <Text style={styles.text}>{name.toLocaleUpperCase("en-US")}</Text>
         </View>
         <View style={styles.settings}>
           <Button
@@ -35,12 +36,23 @@ class User extends Component {
           <Button
             color="white"
             title="Sign out"
-            onPress={() => this.props.navigation.navigate("Auth")}
+            onPress={async () => {
+              this.props.navigation.navigate("Auth");
+              await AsyncStorage.clear();
+            }}
           />
         </View>
       </View>
     );
   }
+  componentDidMount() {
+    this.getUserInfo();
+  }
+  getUserInfo = async () => {
+    const userToken = await AsyncStorage.getItem("userToken");
+    const { user } = JSON.parse(userToken);
+    this.setState({ user });
+  };
 }
 const styles = StyleSheet.create({
   container: {
@@ -50,17 +62,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#151E29"
   },
   img: {
-    height: 100,
-    width: 100,
-    borderRadius: 20
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    marginTop: 50
   },
   imgContainer: {
-    flex: 1,
+    flex: 2,
     justifyContent: "center",
     alignItems: "center"
   },
   settings: {
-    flex: 2,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
