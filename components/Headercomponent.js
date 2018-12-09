@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Image, StyleSheet, Dimensions } from "react-native";
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   "window"
@@ -9,7 +9,7 @@ export default class Headercomponent extends Component {
     return (
       <View>
         <View style={styles.headerContainer}>
-          <Text style={styles.text}>{this.props.name}</Text>
+          <Image style={{ height: 100, width: 200, alignItems: 'center' }} source={require('../assets/PocketPA(3).png')} />
         </View>
       </View>
     );
@@ -18,8 +18,8 @@ export default class Headercomponent extends Component {
 }
 const styles = StyleSheet.create({
   headerContainer: {
+    paddingTop: 20,
     backgroundColor: "#151E29",
-    padding: 20,
     width: viewportWidth,
     alignItems: "center",
     justifyContent: "center"

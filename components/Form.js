@@ -12,6 +12,7 @@ import {
   Button,
   StyleSheet,
   Text,
+  TextInput,
   AsyncStorage,
   View,
   StatusBar
@@ -42,21 +43,24 @@ class Forms extends Component {
                 </Text>
               </View>
             )) || (
-              <Text style={styles.text}>Change your Home/Office Address</Text>
-            )}
-            <Item floatingLabel>
-              <Label color="white">Home Address</Label>
-              <Input
-                color="white"
-                onChangeText={data => this.handleChange(data, "home_address")}
-              />
-            </Item>
-            <Item floatingLabel>
-              <Label>Office Location</Label>
-              <Input
-                onChangeText={data => this.handleChange(data, "office_address")}
-              />
-            </Item>
+                <Text style={styles.text}>Change your Home/Office Address</Text>
+              )}
+            <View style={{ backgroundColor: 'white', borderRadius: 15, margin: 25, borderBottomColor: '#151E29' }}>
+              <Item floatingLabel>
+                <Label color="white">Home Station</Label>
+                <TextInput
+                  inputStyle={{ color: 'white' }}
+                  onChangeText={data => this.handleChange(data, "home_address")}
+                />
+              </Item>
+              <Item floatingLabel>
+                <Label>Office Station</Label>
+                <Input
+                  onChangeText={data => this.handleChange(data, "office_address")}
+                />
+              </Item>
+            </View>
+
             {
               <Button
                 color="white"
