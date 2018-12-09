@@ -2,7 +2,6 @@
 
 Pocket PA is an mobile application build with React-Native as a final project case for graduating Northcoders JavaScript boot-camp. The aim of the application is to help the user to easily access their calendar events and to make it easier for the user to be able to arrange business travel to a certain destination based on the calender event.
 
-
 -this Repo represents the front end to the project.
 -the back-end for this project you can find it in this Repo.
 the deployed website for front end
@@ -27,7 +26,7 @@ the deployed website for front end
 
 ## functionality that will be added later
 
-- 
+-
 
 ## Getting Started
 
@@ -45,6 +44,12 @@ $ cd PA-FRONT-END
 
 ```
 $ npm install
+```
+
+4. to start the app
+
+```
+$ expo start
 ```
 
 The dependencies that will install are:
