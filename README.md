@@ -1,14 +1,14 @@
 # Pocket PA
 
-❮img src="assets/Screenshots/loginpage.png"❯
-❮img src="assets/Screenshots/loginDialog.png"❯
-❮img src="assets/Screenshots/googleOath.png"❯
-❮img src="assets/Screenshots/home:work.png"❯
-❮img src="assets/Screenshots/profile.png"❯
-❮img src="assets/Screenshots/mainpage.png"❯
-❮img src="assets/Screenshots/events.png"❯
-❮img src="assets/Screenshots/event.png"❯
-❮img src="assets/Screenshots/ticketbooking.png"❯
+<img src="assets/Screenshots/loginpage.png" width="414" height="896">
+<img src="assets/Screenshots/loginDialog.png" width="414" height="896">
+<img src="assets/Screenshots/googleOath.png" width="414" height="896">
+<img src="assets/Screenshots/home:work.png" width="414" height="896">
+<img src="assets/Screenshots/profile.png" width="414" height="896">
+<img src="assets/Screenshots/mainpage.png" width="414" height="896">
+<img src="assets/Screenshots/events.png" width="414" height="896">
+<img src="assets/Screenshots/event.png" width="414" height="896">
+<img src="assets/Screenshots/ticketbooking.png" width="414" height="896">
 
 Pocket PA is an mobile application build with React-Native as a final project case for graduating Northcoders JavaScript boot-camp. The aim of the application is to help the user to easily access their calendar events and to make it easier for the user to be able to arrange business travel to a certain destination based on the calender event.
 
