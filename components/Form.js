@@ -5,6 +5,7 @@ import {
   Content,
   Form,
   Item,
+  TextInput,
   Input,
   Label
 } from "native-base";
@@ -12,7 +13,7 @@ import {
   Button,
   StyleSheet,
   Text,
-  TextInput,
+
   AsyncStorage,
   View,
   StatusBar

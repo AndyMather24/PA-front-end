@@ -9,7 +9,7 @@ export default class Headercomponent extends Component {
     return (
       <View>
         <View style={styles.headerContainer}>
-          <Image style={{ height: 100, width: 200, alignItems: 'center' }} source={require('../assets/PocketPA(3).png')} />
+          <Image style={{ height: 100, width: 200, alignItems: 'center', marginTop: 50 }} source={require('../assets/PocketPA(4).png')} />
         </View>
       </View>
     );
